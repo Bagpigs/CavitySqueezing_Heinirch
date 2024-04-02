@@ -1,0 +1,87 @@
+%\documentclass[12pt]{article}
+\documentclass[12pt]{extreport}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+\usepackage{svg}
+\usepackage{hyperref}
+
+%set margins
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+%proof 
+\usepackage{amsthm}
+
+
+% \usepackage{xcolor}
+% \hypersetup{
+	%     colorlinks,
+	%     linkcolor={black!50!black},
+	%     citecolor={black!50!black},
+	%     urlcolor={black!80!black}
+	% }
+
+%setup for supervisors
+\usepackage{xcolor}
+\hypersetup{
+	colorlinks,
+	linkcolor={blue!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+
+
+
+%e.g. bra ket
+\usepackage{physics}
+
+
+%libary tools:
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage[style=alphabetic]{biblatex}
+\addbibresource{Literatur.bib}
+
+%library for subplots
+\usepackage{subcaption}
+\usepackage{graphicx}
+
+%widebar, but also changes other things -> caution
+\usepackage{mathabx}
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\newcommand{\xo}[1]{\hat{\bm{#1}}}
+\newcommand{\dt}[1]{\frac{\mathrm{d}#1}{\mathrm{d}t}}
+\newcommand{\br}[1]{\bra{#1}}
+\newcommand{\ke}[1]{\ket{#1}}
+
+%elegant equation numbering
+\numberwithin{equation}{section}
+
+%\title{QED in Cavity}
+%\author{h.jaeger }
+%\date{April 2023}
+
+\begin{document}
+	%\maketitle
+	\include{Chapter/foundations}
+	
+	% \include{Chapter/0Xfoundations_fulltext}
+	%\include{Chapter/0X2-1Quantisierung}
+	%\include{Chapter/05Analytic_to_squeezing}
+	%\include{Chapter/Work}
+	%\include{Chapter/testchapter}
+	
+	%\include{Chapter/00Titlepage.tex}
+	%\newpage\null\thispagestyle{empty}\newpage
+	%\tableofcontents
+	%\include{Chapter/01Addendum}
+	
+	
+\end{document}
+
