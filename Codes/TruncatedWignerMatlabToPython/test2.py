@@ -1,29 +1,12 @@
-
-import numpy as np
-from scipy.integrate import ode
-
-def eoms(t, y):
-    return -5 * y
-
-phi_initial = 1
-time = np.linspace(0, 10, 1000)
-r = ode(eoms).set_integrator('dopri5')
-r.set_initial_value(phi_initial, time[0])
-
-# Integrate over the entire time span
-ys = []#[phi_initial]
-for t in time[1:]:
-    y = r.integrate(t)
-    print(r.successful())
-    ys.append(y[0])
-    # else:
-    #     print('nope')
-
-ys = np.array(ys)
-# Plotting
-import matplotlib.pyplot as plt
-plt.plot(time, ys)
-plt.xlabel('Time')
-plt.ylabel('Solution')
-#plt.title('Solution of the ODE')
-plt.show()
+dphidt[0] = -1j * chi * (2 * np.conj((phi[0]+np.sqrt(a)*phi[5])) * phi[1] * phi[2] + np.conj(phi[1]) * (phi[0]+np.sqrt(a)*phi[5]) * phi[1] + np.conj(phi[2]) * (phi[0]+np.sqrt(a)*phi[5]) * phi[2]) + \
+                gamma * (np.conj(phi[2]) * phi[2] * (phi[0]+np.sqrt(a)*phi[5]) - np.conj(phi[1]) * phi[1] * (phi[0]+np.sqrt(a)*phi[5])) - \
+                1j * chiM * (2 * np.conj((phi[0]+np.sqrt(a)*phi[5])) * phi[3] * phi[4] + np.conj(phi[3]) * (phi[0]+np.sqrt(a)*phi[5]) * phi[3] + np.conj(phi[4]) * (phi[0]+np.sqrt(a)*phi[5]) * phi[4]) + \
+                gammaM * (np.conj(phi[4]) * phi[4] * (phi[0]+np.sqrt(a)*phi[5]) - np.conj(phi[3]) * phi[3] * (phi[0]+np.sqrt(a)*phi[5]))
+    dphidt[1] = -1j * omega0 * phi[1] - 1j * chi * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[1] + np.conj(phi[2]) * (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5])) + \
+                gamma * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[1] + (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5]) * np.conj(phi[2]))
+    dphidt[2] = -1j * omega0 * phi[2] - 1j * chi * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[2] + np.conj(phi[1]) * (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5])) - \
+                gamma * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[2] + (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5]) * np.conj(phi[1]))
+    dphidt[3] = -1j * omega0 * phi[3] - 1j * chiM * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[3] + np.conj(phi[4]) * (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5])) + \
+                gammaM * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[3] + (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5]) * np.conj(phi[4]))
+    dphidt[4] = -1j * omega0 * phi[4] - 1j * chiM * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[4] + np.conj(phi[3]) * (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5])) - \
+                gammaM * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[4] + (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5]) * np.conj(phi[3]))
