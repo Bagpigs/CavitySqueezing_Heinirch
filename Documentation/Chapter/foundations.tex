@@ -153,3 +153,106 @@ quench: the system jumps from one set of eigenstates to another set of eigenstat
 	\caption{Parametric amplification}
 	\label{fig:scetch_quench_parametric_amplification}
 \end{figure}
+\subsection{The energy scales}
+not sure, whether all plus /minus are choosen correctly in scetch, but the scheme looks approximately like this:  
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{Images/energy_scetch.jpeg}
+	\caption{Energy scetch}
+	\label{fig:energy_scales}
+\end{figure}
+We start in the Rb87 5 2 S1/2 F=1 (F... total angular momentum) fine structure) (https://steck.us/alkalidata/rubidium87numbers.1.6.pdf). We send light $\omega_d$ with $\lambda 790.02nm$. The transition to the  5 2 P3/2 (D2 transition) is around 980nm the transition to 5 2 Pb1/2 (D1) is around 995nm. thus, we are blue detuned with D1 and red detuned with D2 (check whether its not other way around)(one of the wavelength in Rb is wrong). This is called Tune out-wavelength. Even though it is not exactly the middle it is the effective middle. So the scalar polarization $\alpha_s$ is zero and there is no dipole potential trapping the atom. We are off resonant by THz and therefore wont reach any population in the 5 2 P levels (dispersive regime). N I S H A N T  Dogra phdthesis ch3.1. explains this detailed. 
+\\
+the energy of the $\pi$ photon is $\omega_\pm$ = $\omega_d \pm w_z$. So something like Thz $\pm$ e.g. $\omega_z = 2\pi 7 $MHz.
+\\
+The cavity wavelength is chosen to be similar to the drive wavelength: $|\delta_c| = |\omega_d - \omega_c| < 2\pi 10$MHz. But the cavity wavelength is off resonant to the $\pi$ photon wavelength if we compare this detuning $\delta_\pm$ (= diff $\omega_\pm$ and $\omega_c$) with the cavity loss $\kappa$. $|\delta_\pm | \gg \kappa$
+\\
+From somewhere we get
+\begin{equation}\label{eq:fou_coupling}
+	\chi_\pm = \eta^2 \frac{\delta_\pm}{\delta_\pm^2 + \kappa^2}
+\end{equation}
+and
+\begin{equation}
+	\gamma_\pm = \frac{\eta^2 \kappa}{\delta_\pm^2 + \kappa^2}.
+\end{equation}
+\begin{equation}
+	\eta \sim \alpha_\nu E_d E_0
+\end{equation}
+where $\alpha_\nu$ vectorial polarisierbarkeit, $E_d$ intensity of drive, $E_0$ electric field of vacuum of cavity mode =$\rangle$ given by geometry. \ref{eq:fou_coupling} shows, that for high $\omega_z$ the first atom will be most likely in state $\ket{+k,+1}$. This is because high $\omega_z$ implies high $| \delta_- |$ and small $| \delta_+ |$ which leads to a stronger coupling for the + channel. 
+\\
+Experimentally we can change $\delta_c$ and $\omega_z$.  
+\\ 
+ how is k defined? $k=k_z$?. own consideration: let $\omega_c$ = $\omega_d$ + x, where x is order of MHz. We get by Taylor
+ \begin{equation}
+ 	\lambda_c = \frac{c}{\omega_d + x} = \frac{c}{\omega_d}- x \frac{c}{\omega_d^2} + O(x^2) \approx \frac{c}{\omega_d} = \lambda_d.
+ \end{equation}
+Thats the reason, why we use for python just one single wavelength $\lambda_M$. So we can conclude that $k_z \approx k_x$ (=k, right?). 
+ \\
+ With this result we look at the energies of different states: 
+ \begin{equation}
+ 	\psi_{\pm 2 k, 0} \approx N \cos(2kx) \otimes \ket{m=0}
+ \end{equation}
+ and therefore
+ \begin{equation}
+ 	E_{rec} = \frac{\hbar^2 (2k)^2}{2m} = \hbar 4 \omega_{rec}
+ \end{equation}
+ with 
+ \begin{equation}
+ 	\omega_{rec} =  \frac{\hbar k^2}{2m}
+ \end{equation}
+ (check formulas, rodrigo gave them to me.).
+ \\
+ We also get
+ \begin{equation}
+ 	\psi_{+k,+1} \approx N \cos(kx)e^{ikz}.
+ \end{equation}
+\begin{align}
+	E_{kin} &= \int \psi_{+k,+1} \hbar \left ( \frac{\partial_x^2 + \partial_y^2}{2m} \right) \psi_{+k,+1} dx dz
+	\\
+	& =\frac{\hbar k_x^2 + \hbar k_z^2}{2m} = 2 \omega_{rec}.
+\end{align}
+So if we consider the creation of a single pair, we get that this pair has energy 
+\begin{equation}
+	\omega_0 = 2q + 4 \omega_{rec}
+\end{equation} 
+in comparison to the to atoms in the BEC. The first order zeeman splitting cancelled out such that only the 2nd order Zeeman splitting q and the kinetic energy $\omega_{rec}$ contribute. (check with rodrigo, whether this is correct understanding. for this understanding we dont need to consider rotating frame.). We see that for small q the $\ket{\pm 2k,0}$ and $\ket{+k,+1}$ modes have the same energy scale. 
+\\
+Derivation of recoil energy:
+\begin{equation}
+	E_{rec} = \frac{p_{rec}^2}{2m} = \frac{\hbar^2 k^2}{2m} = \frac{\hbar^2 4 \pi^2}{2 m \lambda^2} = \hbar \omega_{rec}.
+\end{equation}
+\subsection{Number squeezing}
+Following (thesis Finger)
+\\
+Introduce imbalance operator
+\begin{equation}
+	\hat{J}_z = \frac{1}{2} (\hat{N}_{+1}- \hat{N}_{-1})
+\end{equation}
+where $\hat{N}_{+1} = \hat{c}_{+k,+1}^\dag \hat{c}_{+k,+1}$ and $\hat{N}_{-1} = \hat{c}_{-k,-1}^\dag \hat{c}_{-k,-1}$. 
+We introduce 
+\begin{equation}
+	\xi_N^2 = \frac{4 \sigma^2(\hat{J}_z)}{N}
+\end{equation}
+where $\sigma^2(\hat{J}_z)$ is variance of imbalance operator. Normalize to the squeezing parameter $\xi_{N,coh}^2$ of uncorrelated spin coherent state $\sigma^2(\hat{J}_z) = \langle N_p \rangle / 2$. If the expression
+\begin{equation}
+	\frac{\xi_N^2}{\xi^2_{N,coh}} = \frac{2 \sigma^2(\hat{J}_z)}{\langle N_p \rangle}
+\end{equation} 
+gets smaller than one, the N-atom state is squeezed below the standard quantum limit. (i.e. below the fluctuations associated with a coherent spin state). 
+
+\subsection{Bipartie entanglement} (following finger thesis)
+
+Assume small Zeeman splittings $\omega_z \rightarrow 0$ (which means two-channel configuration) , where both couplings $\mu_+ \approx \mu_- = \mu$ become equal (what is difference between $\mu$ and $\chi$?). We get
+\begin{equation}
+	\ket{\psi} = (1-\mu^2) \sum_{N_p^+,N_p^- = 0}^\infty \mu^{N_p^+ + N_p^-} \ket{N_p^+,N_p^+;N_p^-.N_p^-}
+\end{equation}
+Thus, for high-gain limit $\mu \rightarrow 1$ our state consists of a superposition of many pair states with different pair numbers. State is called 'entangled bright squeezed vacuum state'
+\\
+signal atoms go in +z direction(A), idler atoms in -z direction(B). Thus, we can see this as two subsystems A, B. Introduce collective pseudo-spin operator: 
+\begin{equation}
+	\bm{J}_{A,B} = \sum_n^{N_{A,B}} \bm{j}_n 
+\end{equation}
+fullfilling
+\begin{equation}
+	\bm{J} = \bm{J}_A+ \bm{J}_B
+\end{equation}
+

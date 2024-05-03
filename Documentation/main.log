@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.12)  2 APR 2024 11:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.12)  2 MAY 2024 13:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1132,7 +1132,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
 (C:\Users\Heinrich\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<Images/scetch_pair_production.png, id=18, 273.02pt x 147.55125pt>
+<Images/scetch_pair_production.png, id=30, 273.02pt x 147.55125pt>
 File: Images/scetch_pair_production.png Graphic file (type png)
 <use Images/scetch_pair_production.png>
 Package pdftex.def Info: Images/scetch_pair_production.png  used on input line 
@@ -1153,7 +1153,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--18
 
 {C:/Users/Heinrich/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./Images/
 scetch_pair_production.png>] [2]
-<Images/scetch_quench_parametric_amplification.png, id=58, 376.90813pt x 143.53
+<Images/scetch_quench_parametric_amplification.png, id=70, 376.90813pt x 143.53
 625pt>
 File: Images/scetch_quench_parametric_amplification.png Graphic file (type png)
 
@@ -1161,26 +1161,41 @@ File: Images/scetch_quench_parametric_amplification.png Graphic file (type png)
 Package pdftex.def Info: Images/scetch_quench_parametric_amplification.png  use
 d on input line 152.
 (pdftex.def)             Requested size: 433.62pt x 165.13329pt.
-) [3] [4 <./Images/scetch_quench_parametric_amplification.png>] (main.aux (Chap
-ter/foundations.aux))
+ [3]
+<Images/energy_scetch.jpeg, id=85, 1284.8pt x 796.9775pt>
+File: Images/energy_scetch.jpeg Graphic file (type jpg)
+<use Images/energy_scetch.jpeg>
+Package pdftex.def Info: Images/energy_scetch.jpeg  used on input line 160.
+(pdftex.def)             Requested size: 433.62pt x 268.97437pt.
+
+Overfull \hbox (8.37703pt too wide) in paragraph at lines 157--171
+\OT1/cmr/m/n/12 men-tum) fine struc-ture) (https://steck.us/alkalidata/rubidium
+87numbers.1.6.pdf). We
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[4 <./Images/scetch_quench_parametric_amplification.png>] [5 <./Images/energy_s
+cetch.jpeg>] [6]) [7] (main.aux (Chapter/foundations.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: AD8683311755FD658BE07923CBB7EBE5;699.
+(rerunfilecheck)             Checksum: F41D6CBE3761E29509E01BE383F30F08;1164.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24182 strings out of 474485
- 432139 string characters out of 5742318
+ 24219 strings out of 474485
+ 432804 string characters out of 5742318
  1939542 words of memory out of 5000000
- 46087 multiletter control sequences out of 15000+600000
+ 46099 multiletter control sequences out of 15000+600000
  570329 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,8n,93p,1021b,1749s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,9n,93p,1021b,1749s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Heinrich\AppData\Local\MiKTeX\fonts/pk/ljfour/public/mathabx/dpi72
 0\mathb12.pk> <C:\Users\Heinrich\AppData\Local\MiKTeX\fonts/pk/ljfour/public/ma
 thabx/dpi600\matha6.pk> <C:\Users\Heinrich\AppData\Local\MiKTeX\fonts/pk/ljfour
@@ -1188,19 +1203,20 @@ thabx/dpi600\matha6.pk> <C:\Users\Heinrich\AppData\Local\MiKTeX\fonts/pk/ljfour
 s/pk/ljfour/public/mathabx/dpi600\matha8.pk> <C:\Users\Heinrich\AppData\Local\M
 iKTeX\fonts/pk/ljfour/public/mathabx/dpi600\matha12.pk><C:/Users/Heinrich/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/He
-inrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
+inrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 <C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmmi6.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmmi8.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmmib10.pfb><C:/Users/Heinrich/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Heinrich/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Heinrich/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/H
-einrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm1
-0.pfb>
-Output written on main.pdf (4 pages, 219450 bytes).
+/cmmi12.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmmi6.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/Heinrich/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Heinrich/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/H
+einrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/s
+ymbols/msbm10.pfb>
+Output written on main.pdf (7 pages, 451635 bytes).
 PDF statistics:
- 177 PDF objects out of 1000 (max. 8388607)
- 30 named destinations out of 1000 (max. 500000)
- 47 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 246 PDF objects out of 1000 (max. 8388607)
+ 55 named destinations out of 1000 (max. 500000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
 
