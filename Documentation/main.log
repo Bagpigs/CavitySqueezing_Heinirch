@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.12)  2 MAY 2024 13:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.12)  3 MAY 2024 20:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1177,7 +1177,28 @@ Overfull \hbox (8.37703pt too wide) in paragraph at lines 157--171
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [4 <./Images/scetch_quench_parametric_amplification.png>] [5 <./Images/energy_s
-cetch.jpeg>] [6]) [7] (main.aux (Chapter/foundations.aux))
+cetch.jpeg>] [6]
+! You can't use `macro parameter character #' in horizontal mode.
+l.242 ...**2*deltap/(deltap**2+(Kappa)**2))/1000 #
+                                                   Pair coupling for chi+ Ch...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+Overfull \hbox (9.79355pt too wide) in paragraph at lines 239--243
+\OT1/cmr/m/n/12 We choose sound ini-tial val-ues:N = 80000,eta = 2*np.pi*1.7e3 
+,Kappa = 2*np.pi*1.25e6,
+ []
+
+
+Overfull \hbox (141.1381pt too wide) in paragraph at lines 239--243
+\OT1/cmr/m/n/12 omegaZ = 2*np.pi *7.09e6,deltaC = -2*np.pi *25.8e6 and get xp=(
+eta**2*deltap/(deltap**2+(Kappa)**2))/1000
+ []
+
+) [7] (main.aux (Chapter/foundations.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -1214,7 +1235,7 @@ pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/H
 einrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 ><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/s
 ymbols/msbm10.pfb>
-Output written on main.pdf (7 pages, 451635 bytes).
+Output written on main.pdf (7 pages, 452474 bytes).
 PDF statistics:
  246 PDF objects out of 1000 (max. 8388607)
  55 named destinations out of 1000 (max. 500000)
