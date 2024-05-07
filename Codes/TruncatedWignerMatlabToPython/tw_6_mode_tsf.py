@@ -24,18 +24,17 @@ q=144  #2md second order splitting of Rb87 in Hz
 
 N = 80000#30000#80000 #80000 # atom number
 DeltaN = 0.00*N # Fluctuations of Atom Number
-tbounds = np.array([0,0.05])#np.array([0,0.2]) # Evoution time in ms
+tbounds = np.array([0,0.2])#np.array([0,0.2]) # Evoution time in ms
 eta = 2*np.pi*1.7e3 # Raman coupling
-eta = 2*np.pi*3.4e3 # Raman coupling
+# eta = 2*np.pi*3.4e3 # Raman coupling
 
 
 Npoints = 2000
 time = np.linspace(tbounds[0],tbounds[1], Npoints)
 Kappa = 2*np.pi*1.25e6 #Cavity losses in Hz
-omegaZ = 2*np.pi *7.09e6#2*np.pi * 1.09e6 #Zeemansplitting in Hz
-deltaC =-28.5e6 * 2 * np.pi # -2*np.pi *25.8e6 # Cavity detuning in Hz
-deltaC =-49.5e6 * 2 * np.pi # -2*np.pi *25.8e6 # Cavity detuning in Hz
-
+omegaZ = 2*np.pi *0.09e6#2*np.pi * 1.09e6 #Zeemansplitting in Hz
+deltaC = -2*np.pi *25.8e6 # Cavity detuning in Hz
+# deltaC =-49.5e6 * 2 * np.pi # -2*np.pi *25.8e6 # Cavity detuning in Hz
 
 # Two Photon Detunings
 delta_p = (deltaC+omegaZ) # Two Photon Detunings for + channel
@@ -93,7 +92,19 @@ def eoms(t, phi, args = None):
                         -1j*np.sqrt(a)*chiM*(2*np.conj((phi[0]+np.sqrt(a)*phi[5]))*phi[3]*phi[4]+ np.conj(phi[3])*(phi[0]+np.sqrt(a)*phi[5])*phi[3] + np.conj(phi[4])*(phi[0]+np.sqrt(a)*phi[5])*phi[4]) \
                         + gammaM*np.sqrt(a)*(np.conj(phi[4])*phi[4]*(phi[0]+np.sqrt(a)*phi[5])-np.conj(phi[3])*phi[3]*(phi[0]+np.sqrt(a)*phi[5]))
 
-
+    #copied from old code EOM Debugged
+    # dphidt[0] = -1j * chi * (2 * np.conj((phi[0]+np.sqrt(a)*phi[5])) * phi[1] * phi[2] + np.conj(phi[1]) * (phi[0]+np.sqrt(a)*phi[5]) * phi[1] + np.conj(phi[2]) * (phi[0]+np.sqrt(a)*phi[5]) * phi[2]) + \
+    #             gamma * (np.conj(phi[2]) * phi[2] * (phi[0]+np.sqrt(a)*phi[5]) - np.conj(phi[1]) * phi[1] * (phi[0]+np.sqrt(a)*phi[5])) - \
+    #             1j * chiM * (2 * np.conj((phi[0]+np.sqrt(a)*phi[5])) * phi[3] * phi[4] + np.conj(phi[3]) * (phi[0]+np.sqrt(a)*phi[5]) * phi[3] + np.conj(phi[4]) * (phi[0]+np.sqrt(a)*phi[5]) * phi[4]) + \
+    #             gammaM * (np.conj(phi[4]) * phi[4] * (phi[0]+np.sqrt(a)*phi[5]) - np.conj(phi[3]) * phi[3] * (phi[0]+np.sqrt(a)*phi[5]))
+    # dphidt[1] = -1j * omega0 * phi[1] - 1j * chi * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[1] + np.conj(phi[2]) * (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5])) + \
+    #             gamma * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[1] + (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5]) * np.conj(phi[2]))
+    # dphidt[2] = -1j * omega0 * phi[2] - 1j * chi * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[2] + np.conj(phi[1]) * (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5])) - \
+    #             gamma * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[2] + (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5]) * np.conj(phi[1]))
+    # dphidt[3] = -1j * omega0 * phi[3] - 1j * chiM * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[3] + np.conj(phi[4]) * (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5])) + \
+    #             gammaM * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[3] + (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5]) * np.conj(phi[4]))
+    # dphidt[4] = -1j * omega0 * phi[4] - 1j * chiM * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[4] + np.conj(phi[3]) * (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5])) - \
+    #             gammaM * (np.conj((phi[0]+np.sqrt(a)*phi[5])) * (phi[0]+np.sqrt(a)*phi[5]) * phi[4] + (phi[0]+np.sqrt(a)*phi[5]) * (phi[0]+np.sqrt(a)*phi[5]) * np.conj(phi[3]))
 
     return dphidt
 
@@ -317,22 +328,26 @@ number_squeezing = xi_N_squared/xi_N_squared_coh
 #plt.plot(time,np.abs(N_ges))
 
 
-plt.plot(time,rho1_mean, label='k,m=1')
 
-plt.plot(time,rho2_mean, label='-k,m=-1')
+# plt.plot(time,rho1_mean, label='k,m=1')
+# plt.plot(time,rho2_mean, label='-k,m=-1')
+plt.grid()
+plt.legend()
+plt.show()
 plt.plot(time,rho3_mean, label='k,m=-1')
 plt.plot(time,rho4_mean, label='-k,m=1')
+plt.grid()
+plt.legend()
+plt.show()
 #plt.title(str('x_p='+str(x_p)+'  x_m='+str(x_m)+ '  Gamma_p= '+str(Gamma_p)+ '  Gamma_m= '+str(Gamma_m)),fontdict={si})
 # plt.plot(time,rho1_mean-rho2_mean, label='<N_p_imb>')
-plt.legend()
-
-plt.show()
 
 
-plt.plot(time,number_squeezing)
-plt.yscale('log')
-plt.legend()
-plt.show()
+#
+# plt.plot(time,number_squeezing)
+# plt.yscale('log')
+# plt.legend()
+# plt.show()
 
 
 #print(rho0_mean)
