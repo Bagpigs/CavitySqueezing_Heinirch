@@ -14,8 +14,6 @@ def tw_for_Npoints_Nrealiz_n_seeds(initial_values_dic):
     phi4_vec = np.zeros((initial_values_dic['Npoints'],initial_values_dic['Nrealiz'],len(initial_values_dic['n_list'])),dtype=np.csingle) #     # mf = 1 ,-k    1_M_vec
     phi5_vec = np.zeros((initial_values_dic['Npoints'],initial_values_dic['Nrealiz'],len(initial_values_dic['n_list'])),dtype=np.csingle) #     # mf = 0, +-2k  5_vec
 
-
-
     ###### #initialize phi (which wont be squared later)
 
     # for each classical seed

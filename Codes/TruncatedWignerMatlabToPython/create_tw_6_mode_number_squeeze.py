@@ -1,10 +1,7 @@
 import numpy as np
-import pandas as pd
-from matplotlib import pyplot as plt
 
 from Codes.TruncatedWignerMatlabToPython.tw_for_Npoints_Nrealiz_n_seeds import tw_for_Npoints_Nrealiz_n_seeds
 
-print('input check')
 
 
 # np.random.seed(0)
@@ -75,7 +72,7 @@ Gamma_m = (eta ** 2 * Kappa / (delta_m ** 2 + (Kappa) ** 2)) / 1000  # Pair coup
 
 # ?
 n_list = np.array([0])  # List of average initial pair number from classical seeds
-Nrealiz = 400  # Number of TW simulations pro setting (used for averaging)
+Nrealiz = 50  # Number of TW simulations pro setting (used for averaging)
 # ?
 scalecoupling_k2 = 1  # 1  # Scale Coupling to m=0, k_x=+-2k mode, set to 0 to supress coupling to this mode and 1 to consider it correctily
 
@@ -84,7 +81,7 @@ scalecoupling_k2 = 1  # 1  # Scale Coupling to m=0, k_x=+-2k mode, set to 0 to s
 a = 2 / 3
 a = (scalecoupling_k2) ** 2 * a
 
-filename = 'tw_detuning_02_2_400_6mode.bin'
+filename = 'tw_detuning_02_2_50_6mode.bin'
 # Shape of tw_matrix: ( 6,         Npoints,    Nreliz,         length(n_list)
 #                     modes       time        realization     seeds
 # axis                0           1           2               3
