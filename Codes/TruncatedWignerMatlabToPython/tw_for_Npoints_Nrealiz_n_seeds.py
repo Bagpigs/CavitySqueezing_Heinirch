@@ -73,3 +73,5 @@ def tw_for_Npoints_Nrealiz_n_seeds(initial_values_dic):
                 print('NpSeed=', initial_values_dic['n_list'][seed_index], ', EOMs ', realiz_index, ' out of ', initial_values_dic['Nrealiz'],
                       ', Time for single EOM=', t_2-t_1,'s')
     return np.array([phi0_vec,phi1_vec,phi2_vec,phi3_vec,phi4_vec,phi5_vec])
+
+# def do_calculation(initial_values_dic())
