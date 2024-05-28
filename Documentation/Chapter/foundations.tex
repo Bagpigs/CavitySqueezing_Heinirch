@@ -139,6 +139,7 @@ with three non-degenerate complex eigenvalues
 	\lambda_{3,\pm} = - \sqrt{- \omega_0 (\omega_0+8N \chi_\pm)}
 \end{align}
 We also have
+
 \begin{equation}\label{eq:fou_time_development_particle_number}
 	\langle N_{p,\pm} \rangle = \frac{1}{2} (\langle c_{1,\pm}^\dag c_{1,\pm} \rangle + \langle c_{-1,\mp}^\dag c_{-1,\mp}\rangle ) \approx \langle K_{z,\pm} \rangle - \frac{1}{2} \approx A\cosh(\lambda_\pm t) + \text(const)
 \end{equation}
@@ -178,7 +179,15 @@ and
 \begin{equation}
 	\eta \sim \alpha_\nu E_d E_0
 \end{equation}
-where $\alpha_\nu$ vectorial polarisierbarkeit, $E_d$ intensity of drive, $E_0$ electric field of vacuum of cavity mode =$\rangle$ given by geometry. \ref{eq:fou_coupling} shows, that for high $\omega_z$ the first atom will be most likely in state $\ket{+k,+1}$. This is because high $\omega_z$ implies high $| \delta_- |$ and small $| \delta_+ |$ which leads to a stronger coupling for the + channel. 
+where $\alpha_\nu$ vectorial polarisierbarkeit, $E_d$ amplitude of drive, $E_0$ electric field of vacuum of cavity mode =$\rangle$ given by geometry.
+\\
+concrete we have
+\begin{equation}
+	\eta = \beta \alpha_\nu E_0 E_d / 8 \hbar.
+\end{equation}
+The factor $\beta \approx 0.89$ arises from overlap integrals between harmonically confined atomic cloud, the cavity mode and the drive.
+\\
+ (\ref{eq:fou_coupling}) shows, that for high $\omega_z$ the first atom will be most likely in state $\ket{+k,+1}$. This is because high $\omega_z$ implies high $| \delta_- |$ and small $| \delta_+ |$ which leads to a stronger coupling for the + channel. 
 \\
 Experimentally we can change $\delta_c$ and $\omega_z$.  
 \\ 
@@ -239,7 +248,7 @@ where $\sigma^2(\hat{J}_z)$ is variance of imbalance operator. Normalize to the 
 \end{equation} 
 gets smaller than one, the N-atom state is squeezed below the standard quantum limit. (i.e. below the fluctuations associated with a coherent spin state). 
 \\
-We choose sound initial values:N = 80000,eta = 2*np.pi*1.7e3 ,Kappa = 2*np.pi*1.25e6, omegaZ = 2*np.pi *7.09e6,deltaC = -2*np.pi *25.8e6 and get deltap = -117558397.09733006 and xp=(eta**2*deltap/(deltap**2+(Kappa)**2))/1000 # Pair coupling for chi+ Channel: xp =-0.0009662. In the following we hold this coupling constant.
+We choose sound initial values:N = 80000,eta = 2*np.pi*1.7e3 ,Kappa = 2*np.pi*1.25e6, omegaZ = 2*np.pi *7.09e6,deltaC = -2*np.pi *25.8e6 and get deltap = -117558397.09733006 and xp=(eta**2*deltap/(deltap**2+(Kappa)**2))/1000 , Pair coupling for chi+ Channel: xp =-0.0009662. In the following we hold this coupling constant.
 
 \subsection{Bipartie entanglement} (following finger thesis)
 
@@ -257,4 +266,169 @@ fullfilling
 \begin{equation}
 	\bm{J} = \bm{J}_A+ \bm{J}_B
 \end{equation}
+
+\subsection{Spin-nematic squeezing} (following kunkel thesis)https://www.kip.uni-heidelberg.de/Veroeffentlichungen/download.php/6440/temp/3991.pdf
+Spin-1 states: we have basis $\ket{m_F}$ with $m_F \in \{-1,0,+1\}$ for the F = 1 hyperfine manifold
+\\ 
+Pure $\textbf{single-particle}$ state is (up to a global phase)
+\begin{align}
+	\ket{\psi} &= r_{+1} e^{i \Phi_L /2} \ket{+1} + r_0 e^{i\Phi_S} \ket{0} + r_{-1} e^{-i \Phi_L /2} \ket{-1}
+	\\
+	& = \left (
+	\begin{matrix}
+		r_{+1}e^{i \Phi_L/2}
+		\\
+		r_0 e^{i\Phi_S}
+		\\
+		r_{-1} e^{i \Phi_L/2}
+	\end{matrix} \right )
+\end{align}
+where prefactors $r_{0,\pm 1}$ are chosen real with $\sum_i r_i^2 = 1$. 
+\\
+Lamor phase defined
+\begin{equation}
+	\Phi_L = \Phi_{+1}- \Phi_{-1}
+\end{equation}
+Spinor phase defined (sometimes differs in literature)
+\begin{equation}
+	\Phi_S = \Phi_0 - ( \Phi_{+1} - \Phi_{-1})
+\end{equation}
+Aim to find complete set of operators which form a basis for hermitian operators acting on spin-1 Hilbert space to completely describe the density matrix of a mixed state. 
+\begin{equation}
+	\hat{\bm{S}}_x = \frac{1}{\sqrt{2}}\left( 
+		\begin{matrix}
+				0 && 1 && 0
+				\\
+				1 && 0 && 1
+				\\
+				0 && 1 && 0
+		\end{matrix} \right)
+\end{equation}
+they (as sigma matrices in spin 1/2 case) fulfill SU(2) commutation relation $[\hat{\bm{S}}_i,\hat{\bm{S}}_j] =i \epsilon_{ijk} \hat{\bm{S}}_k$. In contrast to spin-1/2 case, mean value of these three operators are not sufficient to uniquely determine the quantum state. eg in thesis. thus, additional observables required to unambiguously identify the spin states.
+//
+Here: quadrupole operators
+\begin{equation}
+	\hat{\bm{Q}}_{ij} = \hat{\bm{S}}_i \hat{\bm{S}}_j + \hat{\bm{S}}_j \hat{\bm{S}}_i - \frac{4}{3} \delta_{ij} \mathds{1}_3
+\end{equation}
+Together with spin operators this gives 9 operators. 
+\\
+own thoughts: spin1/2: pure state: 2 free components, mixed state three free components $\rightarrow$ $\vec{r}$ to define (so density matrix has 3 independent entries. this goes also along with the picture of a 2x2 matrix., wait, but the entries of the density matrix are complex, this would double the amount of free components. i dont get it.). spin 1: pure state 4 free components (two real parts + two complex phases). 
+//
+Density matrix has 8 independent entries. (this goes along with the picture of a 3x3 matrix, but wait. complex entries, so this time complex 8D hilbert space over complex field?). Thus, basis set is overcomplete. We only choose the following five quadrupole operator:
+\begin{equation}
+	\xo{Q}_{xz} = \frac{1}{\sqrt{2}} \left (
+	\begin{matrix}
+		0 && 1 && 0 
+		\\
+		1 && 0 && -1
+		\\
+		0 && -1 && 0
+	\end{matrix} \right ), \xo{V}_x = \frac{1}{2} (\xo{Q}_{xx} - \xo{Q}_{yy}) = \left( 
+	\begin{matrix}
+		0 && 0 && 1
+		\\
+		0 && 0 && 0
+		\\
+		1 && 0 && 0
+	\end{matrix} \right)
+\end{equation}etc.
+With these operators a general spin-1 density matrix is parametrized as
+\begin{equation}
+	\hat{\rho} = \frac{1}{3} \mathds{1}_3 + \sum_i s_i \xo{S}_i  + \sum_j q_j \xo{Q}_j + \sum_k v_k \xo{V}_k
+\end{equation}.
+Quadrupol operators are linked to second moment of the spin i.e. the covariance matrix
+\begin{align}
+	T_{ij} &\coloneqq \frac{1}{2} \langle \xo{S}_j \xo{S}_i + \xo{S}_i \xo{S}_j \rangle_Q - \langle \xo{S}_i \rangle_Q \langle \xo{S}_j \rangle_Q
+	\\ 
+	&= \langle \frac{1}{2} \xo{Q}_{ij} + \frac{1}{3} \delta_{ij}  \mathds{1}_3 \rangle_Q - \langle \xo{S}_i \rangle_Q \langle \xo{S}_j \rangle_Q
+\end{align}
+where $\langle .  \rangle_Q $ is quantum mechanical expectation value $tr\{\cdot \rho \}$.
+\\
+The density matrix of a general single-particle mixed state is, thus, defined by mean value of there eight operator. (mean value of those operators: eg $\xo{S}_i$: mean value is $ \langle\xo{S}_i \rangle = Tr\{ \rho \xo{S}_i \}$. Let us add inner product to Hilberspace(wait the operator space is just a vector space, right? a hilbertspace would already have an inner product), let this be defined for A,B as $Tr\{ AB\}$: then we only have to check, that our operators are orthonormal under this inner product (and with Id?). If yes, we get that the prefactors are given by the mean value of the corresponding operator (as stated before)).
+\\
+We have the SU(2) subspaces $\{\xo{S}_x, \xo{S}_y, \xo{S}_z\}, \{\xo{Q}_{xz},\xo{Q}_{yz}, \xo{S}_z\}, \{\xo{V}_x, \xo{V}_y, \xo{S}_z\}.$. Notice: all three subspaces contain operator $\xo{S}_z$ and rotation around corresponding axis is equivalent to change of Larmor phase. Thus, in a Hesinberg picture the remaining two operatros in each SU(2) subspace are connected via a change of the Lamor phase. 
+\\
+Transversal operators
+\begin{align}
+	\xo{S}_\perp (\Phi_L) \coloneqq \cos(\Phi_L) \xo{S}_x + \sin(\Phi_L) \xo{S}_y
+	\\
+	...
+	\\
+	\xo{V}_\perp (\Phi_L) \coloneqq \cos(2\Phi_L) \xo{V}_x + \sin(2\Phi_L) \xo{V}_y
+\end{align}
+\\
+Similar $\xo{Q}_{zz}$ is connected to spinor phase $\Phi_S$. We want to represent the unitary operation $e^{-i \varphi \xo{Q}_{zz}/2}$ on some SU(2) sphere where the rotations are generated by $\xo{Q}_{zz}$. Define 
+\begin{equation}
+	\xo{Q}_0 \coloneqq - \frac{1}{3} \mathds{1}_3 - \xo{Q}_{zz} = \left(
+	\begin{matrix}
+		-1 && 0 && 0 
+		\\
+		0 && 1 && 0 
+		\\ 
+		0 && 0 && -1
+	\end{matrix}
+	\right)
+\end{equation} 
+to center the spectrum around zero. 
+\\
+With this operator we define the spin-nematic subspace $\{\xo{S}_\perp(\Phi_L), \xo{Q}_\perp(\Phi_L), \xo{Q}_0\}$ for each phase $\Phi_L$. ... In general they do not fulfill the SU(2) commutation relations. However for states $\ket{\psi_n}$ with equal probability to find a particle in the state $\ket{\pm 1}$ one can find a phase $\Phi_L$  with $\langle \xo{N}^+ - \xo{V}_\perp(\Phi_L)\rangle_Q = 0$. The operators then fulfill the SU(2) permutation relations for the expectation value
+\begin{equation}
+	\langle [ \xo{Q}_\perp (\Phi_L), \xo{S}_\perp (\Phi_L) ] \rangle_Q = 2 i \langle \xo{Q}_0 \rangle_Q.
+\end{equation}
+Discussion Rodrigo: we define it that general with Q,Sperp, because we can decide on the lamour phase and therefore it can be either Sx or Sy or sth in between.
+\\
+This commutation relation means that they have this SU(2) rotation relation.e.g. rotating around $Q_0$ axis rotates a state in $S_\perp$ to a state in $Q_\perp$ and vv. Not so sure but i think: The phase that creates the roations with the generator $Q_0$ is the spinor phase. Maybe $\exp{-i \Phi_S \xo{Q}_0}$. well, in the figure it is $Q_{yz}, S_x$. so $S_\perp$ and $Q_\perp$ are connected by Spinor phase.
+\\
+Any unitary trafo generated by these three operators does not change $\Phi_L$.
+\\
+done with chapter!
+\\
+now following chapman paper: spin-nematic squeezed vacuum in a quantum gas
+\\
+here: look at multi particle formalism.
+\\
+We define
+\begin{equation}
+	\hat{S}_x = \frac{1}{\sqrt{2}}( \hat{a}_1^\dag \hat{a}_0 + \hat{a}_0^\dag \hat{a}_{-1} + \hat{a}_0^\dag \hat{a}_1 + \hat{a}_{-1}^\dag \hat{a}_0)
+\end{equation}
+Generalized uncertainty relation
+\begin{equation}
+	\Delta A \Delta B \geq \frac{1}{2} |\langle [A,B] \rangle |
+\end{equation}
+E.g. all atoms in $m_f = 0$. We get 
+\begin{equation}
+	\bra{0,N,0} [\hat{S}_x , \hat{Q}_{yz} ] \ket{0,N,0} = - 2iN
+\end{equation}
+Relevant uncertainty relation
+\begin{equation}
+	\Delta S_x \Delta Q_{yz} \geq N
+\end{equation}
+Define squeezing parameter (in terms of quadratures of the operators: which operators? I guess Sx and Qyz, because cos theta Sx + sin theta Qxy =: quadrature operator)
+\begin{equation}
+	\xi_{x}^2 = \langle ( \Delta (\cos \theta S_{x} + \sin \theta Q_{yz}))^2 \rangle /N
+\end{equation}
+with $\theta$ as the quadrature angle. Squeezing if variance of quadrature operator being less than SQL of N for some value of $\theta$. 
+Therefore if $\xi_x^2 < 1$.
+\\
+protocol: Initial state $m_f = 0$. b) 25ms of evolution: spin nematic squeezing develops. c ) microwave pulse rotates quadrature phase around Qzz. Looking at kunkel thesis, this could be the spinor phase.  d) pi/2 RF pulse rotates transverse magnetization Sx into Sz (so rotation around Sy?).e) we now measure Sz thus before in c) Sx was squeezed. And before that in b) an arbitrary quadrature of cos theta Sx + sin theta Qyz was squeezed. 
+\\
+So which states to we need to squeeze this quadrature operator? Do we have them in our experiment? Which quadrature is squeezed? Do we have the pulses experimentally to rotate the squeezing it in the Sz direction?
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{chapman_fig1}
+	\caption{}
+	\label{fig:chapmanfig1}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+ 
+
 

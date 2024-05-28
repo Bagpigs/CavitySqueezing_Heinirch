@@ -1,8 +1,8 @@
 from multiprocessing import Pool, cpu_count
 
 import numpy as np
-import time as timemodule
-import matplotlib as plt
+# import time as timemodule
+import matplotlib.pyplot as plt
 
 from Codes.TruncatedWignerMatlabToPython.tw_for_Npoints_Nrealiz_n_seeds import tw_for_Npoints_Nrealiz_n_seeds
 
@@ -50,12 +50,12 @@ if __name__ == '__main__':
     delta_p_old_setup = get_delta_p(eta_old_setup, x_p, Kappa)
 
     # Define maximal eta, delta_p possible
-    eta_max_multi = 3
+    eta_max_multi = np.sqrt(3)
     eta_max = eta_max_multi * eta_old_setup
     delta_p_max = get_delta_p(eta_max, x_p, Kappa)
 
     # Define corresponding vectors (equally spaced in delta_p)
-    N_delta_p_points = 8
+    N_delta_p_points = 6
     delta_p = np.linspace(delta_p_old_setup, delta_p_max, N_delta_p_points)
     eta = get_eta(delta_p, x_p, Kappa)
 
@@ -77,7 +77,7 @@ if __name__ == '__main__':
 
     # ?
     n_list = np.array([0])  # List of average initial pair number from classical seeds
-    Nrealiz = 50  # Number of TW simulations pro setting (used for averaging)
+    Nrealiz = 600  # Number of TW simulations pro setting (used for averaging)
     # ?
     scalecoupling_k2 = 1  # 1  # Scale Coupling to m=0, k_x=+-2k mode, set to 0 to supress coupling to this mode and 1 to consider it correctily
 
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     a = 2 / 3
     a = (scalecoupling_k2) ** 2 * a
 
-    filename = 'tw_detuning_02_8_50_6mode.bin'
+    filename = 'tw_detuning_02_6_600_6_corr.bin'
     # Shape of tw_matrix: ( 6,         Npoints,    Nreliz,         length(n_list)
     #                     modes       time        realization     seeds
     # axis                0           1           2               3
@@ -99,9 +99,10 @@ if __name__ == '__main__':
     tw_matrix_variable_detuning = phi0_vec = np.zeros(shape_detuning,dtype=np.csingle)
 
     #measure time
-    t_0 = timemodule.time()
+    # t_0 = timemodule.time()
     inital_values_dic_list = []
     for i in range(N_delta_p_points):
+        print(i,'von',N_delta_p_points)
         inital_values_dic_list.append({'Npoints': Npoints,
                               'Nrealiz': Nrealiz,
                               'n_list': n_list,
@@ -124,11 +125,12 @@ if __name__ == '__main__':
         results = pool.map(tw_for_Npoints_Nrealiz_n_seeds, inital_values_dic_list)
 
 
+
     pool.close()
     pool.join()
     tw_matrix_variable_detuning = np.array(results)
 
-    print('done with pool')
+    # print('done with pool')
     # tw_matrix_variable_detuning_flat = tw_matrix_variable_detuning.reshape(1, np.product(shape_detuning))
     # df =  pd.DataFrame(tw_matrix_variable_detuning_flat)
     # df.to_csv("tw_matrix_variable_detuning_flat_accurate.csv", header=False, index=False)
@@ -138,4 +140,4 @@ if __name__ == '__main__':
         bin_file[detuning_index] = tw
     del bin_file
 
-    print('time usage total', timemodule.time()-t_0)
+    # print('time usage total', timemodule.time()-t_0)

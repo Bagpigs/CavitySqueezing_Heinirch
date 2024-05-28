@@ -1,9 +1,8 @@
 from multiprocessing import Pool, cpu_count
 
 import numpy as np
-import time as timemodule
-
-from matplotlib import pyplot as plt
+# import time as timemodule
+import matplotlib.pyplot as plt
 
 from Codes.TruncatedWignerMatlabToPython.tw_for_Npoints_Nrealiz_n_seeds import tw_for_Npoints_Nrealiz_n_seeds
 
@@ -51,12 +50,12 @@ if __name__ == '__main__':
     delta_p_old_setup = get_delta_p(eta_old_setup, x_p, Kappa)
 
     # Define maximal eta, delta_p possible
-    eta_max_multi = 3
+    eta_max_multi = np.sqrt(3)
     eta_max = eta_max_multi * eta_old_setup
     delta_p_max = get_delta_p(eta_max, x_p, Kappa)
 
     # Define corresponding vectors (equally spaced in delta_p)
-    N_delta_p_points = 8
+    N_delta_p_points = 30
     delta_p = np.linspace(delta_p_old_setup, delta_p_max, N_delta_p_points)
     eta = get_eta(delta_p, x_p, Kappa)
 
@@ -78,7 +77,7 @@ if __name__ == '__main__':
 
     # ?
     n_list = np.array([0])  # List of average initial pair number from classical seeds
-    Nrealiz = 50  # Number of TW simulations pro setting (used for averaging)
+    Nrealiz = 1000  # Number of TW simulations pro setting (used for averaging)
     # ?
     scalecoupling_k2 = 1  # 1  # Scale Coupling to m=0, k_x=+-2k mode, set to 0 to supress coupling to this mode and 1 to consider it correctily
 
@@ -87,7 +86,7 @@ if __name__ == '__main__':
     a = 2 / 3
     a = (scalecoupling_k2) ** 2 * a
 
-    filename = 'tw_detuning_02_8_50_6mode.bin'
+    filename = 'tw_detuning_02_30_1000_6_corr.bin'
 
 squeezing_vec = np.zeros((N_delta_p_points),dtype=np.csingle)
 newfp = np.memmap(filename, dtype=np.csingle, mode='r', shape=(N_delta_p_points, 6, Npoints, Nrealiz, 1))
@@ -111,88 +110,87 @@ for i in range(N_delta_p_points):
     rho3_mean = np.mean(rho3_vec, axis=1)
     rho4_mean = np.mean(rho4_vec, axis=1)
     rho5_mean = np.mean(rho5_vec, axis=1)
-
-    plt.plot(time, rho0_mean, label='0,m=0')
-    plt.plot(time, rho1_mean, label='k,m=1')
-    plt.plot(time, rho3_mean, label='k,m=-1')
-    plt.plot(time, rho4_mean, label='-k,m=1')
-    plt.plot(time, rho5_mean, label='2k,m=0')
-    plt.grid()
-    plt.legend()
-    plt.show()
+    #
+    if i %14  == 0:
+    #     print(i)
+    #     plt.plot(time, rho0_mean, label='0,m=0')
+        plt.plot(time, rho2_mean/rho3_mean, label='2mode by 3 mode')
+        plt.plot(time, rho2_mean/rho5_mean, label='2mode by 5 mode')
+        # plt.plot(time, rho3_mean, label='k,m=-1')
+    # # # plt.plot(time, rho4_mean, label='-k,m=1')
+    #     plt.plot(time, rho5_mean, label='2k,m=0')
+    #     plt.grid()
+    # plt.legend()
+    # plt.show()
 
 
     # #
-    J_z_vec = 1 / 2 * (rho3_vec - rho4_vec)
+    J_z_vec = 1 / 2 * (rho1_vec - rho2_vec)
     J_z_var = (np.var(J_z_vec, axis=1))
 
     xi_N_squared = 4 * J_z_var / N
-    xi_N_squared_coh = 4 * rho4_mean / 2 / N
+    xi_N_squared_coh = 4 * rho2_mean / 2 / N
     number_squeezing = xi_N_squared / xi_N_squared_coh
 
     # Plot squeezing over time
-    # plt.plot(time*1000, number_squeezing)
-    # plt.show()
+    # if i % 8 == 0:
+    #     plt.plot(time*1000, number_squeezing)
+    #     # plt.show()
     #
-    # squeezing_vec[i] = number_squeezing.min()
+    squeezing_vec[i] = number_squeezing.min()
     # pairs_max_squeezing_vec[i] = rho4_mean[number_squeezing.argmin()]
     #
     idx_loose_squeezing = np.argwhere(np.diff(np.sign(number_squeezing[:,0]-1)))[-1][0]
-    pairs_loose_squeezing_vec[i] = rho4_mean[idx_loose_squeezing]
+    pairs_loose_squeezing_vec[i] = rho2_mean[idx_loose_squeezing]
 
 
 
     #plot squeezing over number of pairs
-    #plt.plot(rho4_mean[0:700],number_squeezing[0:700])
+    # if i == N_delta_p_points-1:
+    #     plt.plot(rho2_mean[0:440],number_squeezing[0:440])
 
 
-# Plot squeezing over number of pairs
-#
+
+#plot squeezing over number of pairs
+# plt.title('+ channel squeezing for max power')
 # plt.yscale('log')
-# plt.title('- channel squeezing for different detunings')
 # plt.ylabel('squeezing')
 # plt.xlabel('<Npairs>')
-# plt.legend()
-# plt.savefig('plots/sq_Npairs_M.svg')
+# plt.savefig('plots/sq_Npairs_P_corr_max_power_high_res.svg')
 # plt.show()
+#
 
 
-# plot number of pairs at max squeezing: +channel
-plt.plot(-delta_p/2/np.pi/10**6, pairs_loose_squeezing_vec)
-plt.title('- channel number of pairs at loose squeezing')
-plt.ylabel('<number pairs>')
-plt.xlabel('d_p in 2 pi MHz')
-plt.legend()
-# plt.savefig('plots/Npair_sq_loose_M_bla.svg')
-plt.show()
+# plot number of pairs at loose squeezing: +channel
+# plt.plot(-delta_p/2/np.pi/10**6, pairs_loose_squeezing_vec)
+# plt.title('+ channel number of pairs at loose squeezing')
+# plt.ylabel('<number pairs>')
+# plt.xlabel('d_p in 2 pi MHz')
+# plt.legend()
+# plt.savefig('plots/Npair_sq_loose_P_corr_high_res.svg')
+# plt.show()
 
 
 # Plot number pairs
-# plt.title('- channel for different detunings')
-# plt.ylabel('<number pairs>')
-# plt.xlabel('t (micro sec)')
-# plt.yscale('log')
-# plt.legend()
-# plt.savefig('plots/sqM.svg')
-# plt.show()
-#
+plt.title('+ channel for different detunings')
+plt.ylabel('<number pairs>')
+plt.xlabel('t (micro sec)')
+plt.yscale('log')
+plt.legend()
+#plt.savefig('plots/sqP_corr_high_res_bla.svg') # corr means that we realize, that eta**2 prop to power
+plt.show()
+# # #
 
 # plot squeezing over detuing
-# plt.plot(-delta_p/2/np.pi/10**6, -10*np.log10(squeezing_vec))
-# plt.title('- channel over detuning')
-# plt.ylabel('sq factor in DB')
-# plt.xlabel('d_p in 2 pi MHz')
-# plt.savefig('plots/sqM.svg')
-# plt.legend()
-# plt.show()
-#
+
+
 # # plot squeezing
-# plt.title('- channel for different detunings')
+# plt.title('+ channel for different detunings')
 # plt.ylabel('squeezing')
 # plt.xlabel('t (micro sec)')
 # plt.yscale('log')
 # plt.legend()
-# plt.savefig('plots/sqM_all.svg')
+# plt.savefig('plots/sqP_all_corr_high_res.svg')
 # plt.show()
 
 

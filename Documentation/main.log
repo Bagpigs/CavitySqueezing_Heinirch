@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.12)  3 MAY 2024 20:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.12)  24 MAY 2024 14:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1132,7 +1132,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
 (C:\Users\Heinrich\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<Images/scetch_pair_production.png, id=30, 273.02pt x 147.55125pt>
+<Images/scetch_pair_production.png, id=34, 273.02pt x 147.55125pt>
 File: Images/scetch_pair_production.png Graphic file (type png)
 <use Images/scetch_pair_production.png>
 Package pdftex.def Info: Images/scetch_pair_production.png  used on input line 
@@ -1153,22 +1153,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--18
 
 {C:/Users/Heinrich/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./Images/
 scetch_pair_production.png>] [2]
-<Images/scetch_quench_parametric_amplification.png, id=70, 376.90813pt x 143.53
+<Images/scetch_quench_parametric_amplification.png, id=74, 376.90813pt x 143.53
 625pt>
 File: Images/scetch_quench_parametric_amplification.png Graphic file (type png)
 
 <use Images/scetch_quench_parametric_amplification.png>
 Package pdftex.def Info: Images/scetch_quench_parametric_amplification.png  use
-d on input line 152.
+d on input line 153.
 (pdftex.def)             Requested size: 433.62pt x 165.13329pt.
  [3]
-<Images/energy_scetch.jpeg, id=85, 1284.8pt x 796.9775pt>
+<Images/energy_scetch.jpeg, id=89, 1284.8pt x 796.9775pt>
 File: Images/energy_scetch.jpeg Graphic file (type jpg)
 <use Images/energy_scetch.jpeg>
-Package pdftex.def Info: Images/energy_scetch.jpeg  used on input line 160.
+Package pdftex.def Info: Images/energy_scetch.jpeg  used on input line 161.
 (pdftex.def)             Requested size: 433.62pt x 268.97437pt.
 
-Overfull \hbox (8.37703pt too wide) in paragraph at lines 157--171
+Overfull \hbox (8.37703pt too wide) in paragraph at lines 158--172
 \OT1/cmr/m/n/12 men-tum) fine struc-ture) (https://steck.us/alkalidata/rubidium
 87numbers.1.6.pdf). We
  []
@@ -1178,45 +1178,60 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [4 <./Images/scetch_quench_parametric_amplification.png>] [5 <./Images/energy_s
 cetch.jpeg>] [6]
-! You can't use `macro parameter character #' in horizontal mode.
-l.242 ...**2*deltap/(deltap**2+(Kappa)**2))/1000 #
-                                                   Pair coupling for chi+ Ch...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-Overfull \hbox (9.79355pt too wide) in paragraph at lines 239--243
+Overfull \hbox (9.79355pt too wide) in paragraph at lines 248--252
 \OT1/cmr/m/n/12 We choose sound ini-tial val-ues:N = 80000,eta = 2*np.pi*1.7e3 
 ,Kappa = 2*np.pi*1.25e6,
  []
 
 
-Overfull \hbox (141.1381pt too wide) in paragraph at lines 239--243
-\OT1/cmr/m/n/12 omegaZ = 2*np.pi *7.09e6,deltaC = -2*np.pi *25.8e6 and get xp=(
-eta**2*deltap/(deltap**2+(Kappa)**2))/1000
+Overfull \hbox (28.53928pt too wide) in paragraph at lines 248--252
+\OT1/cmr/m/n/12 omegaZ = 2*np.pi *7.09e6,deltaC = -2*np.pi *25.8e6 and get delt
+ap = -117558397.09733006
  []
 
-) [7] (main.aux (Chapter/foundations.aux))
+
+Overfull \hbox (6.76572pt too wide) in paragraph at lines 248--252
+\OT1/cmr/m/n/12 and xp=(eta**2*deltap/(deltap**2+(Kappa)**2))/1000 , Pair cou-p
+ling for chi+ Chan-
+ []
+
+[7]
+Overfull \hbox (160.59328pt too wide) in paragraph at lines 270--274
+\OT1/cmr/m/n/12 (following kunkel thesis)https://www.kip.uni-heidelberg.de/Vero
+effentlichungen/download.php/6440/temp/3991.pdf
+ []
+
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 3
+11.
+
+(C:\Users\Heinrich\AppData\Local\Programs\MiKTeX\tex/latex/doublestroke\udsrom.
+fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+) [8] [9]
+<chapman_fig1.png, id=153, 551.56062pt x 119.44624pt>
+File: chapman_fig1.png Graphic file (type png)
+<use chapman_fig1.png>
+Package pdftex.def Info: chapman_fig1.png  used on input line 416.
+(pdftex.def)             Requested size: 303.53267pt x 65.73572pt.
+ [10]) [11 <./chapman_fig1.png>] (main.aux (Chapter/foundations.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F41D6CBE3761E29509E01BE383F30F08;1164.
+(rerunfilecheck)             Checksum: D789BF8DABEF08ACCE53F1E1CB0321FF;1338.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24219 strings out of 474485
- 432804 string characters out of 5742318
- 1939542 words of memory out of 5000000
- 46099 multiletter control sequences out of 15000+600000
- 570329 words of font info for 79 fonts, out of 8000000 for 9000
+ 24273 strings out of 474485
+ 433780 string characters out of 5742318
+ 1945542 words of memory out of 5000000
+ 46121 multiletter control sequences out of 15000+600000
+ 570617 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,9n,93p,1021b,1749s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,14n,93p,1021b,1749s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Heinrich\AppData\Local\MiKTeX\fonts/pk/ljfour/public/mathabx/dpi72
 0\mathb12.pk> <C:\Users\Heinrich\AppData\Local\MiKTeX\fonts/pk/ljfour/public/ma
 thabx/dpi600\matha6.pk> <C:\Users\Heinrich\AppData\Local\MiKTeX\fonts/pk/ljfour
@@ -1230,14 +1245,16 @@ inrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 /amsfonts/cm/cmmi6.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/t
 ype1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiK
 TeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/Heinrich/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Heinrich/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/H
-einrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/s
-ymbols/msbm10.pfb>
-Output written on main.pdf (7 pages, 452474 bytes).
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Users/Heinr
+ich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
+Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
+8.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/doublestroke/dsrom12.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (11 pages, 584566 bytes).
 PDF statistics:
- 246 PDF objects out of 1000 (max. 8388607)
- 55 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 316 PDF objects out of 1000 (max. 8388607)
+ 82 named destinations out of 1000 (max. 500000)
+ 89 words of extra memory for PDF output out of 10000 (max. 10000000)
 
