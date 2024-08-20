@@ -70,6 +70,8 @@ Nrealiz=1; %!!! Number of TW simulations pro setting (used for averaging)
 scalecoupling_k2=1; % Scale Coupling to m=0, k_x=+-2k mode, set to 0 to supress coupling to this mode and 1 to consider it correctily
 SeedType='Deterministic';
 
+
+
 cmap=jet(length(n_list));
 rhoM1_vec=zeros(Npoints,Nrealiz,length(n_list));
 rho1_vec=zeros(Npoints,Nrealiz,length(n_list));

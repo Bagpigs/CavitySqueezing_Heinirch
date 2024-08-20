@@ -1,0 +1,7 @@
+\section{Numerical setup}\label{sec:numerical_setup}
+method='DOP853',atol=1e-8,rtol=1e-8
+
+I used python. TW EOM implemented as described in Foundations \autoref{sec:fou_derivation_of_EOM}. For solving system of ordinary differential equations I used from scipy.integrate import solve$\_$ivp  \cite{scipyScipyintegratesolve}. (here I could mention tolerances and what it implies on numerical accuracy). This numerical procedure was used for whole thesis.(i can mention it but not explain further, compare to thesis rodrigo) The corresponding code can be found in the supplementary material. Other things I want to say about numerics? 
+Nrealiz: in relative number squeezing we are interested in e.g. the variance of the population balance. The variance converges for high Nrealiz to a certain number. One could check how this curve looks like and whether 1000 realiz is enough. C.f. handwritten notes p27 (rodrigo finds such a plot interesting)
+
+no I!!

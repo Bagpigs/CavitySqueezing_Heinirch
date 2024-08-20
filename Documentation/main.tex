@@ -44,7 +44,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 
-\usepackage[style=alphabetic]{biblatex}
+\usepackage[style=numeric]{biblatex}
 \addbibresource{Literatur.bib}
 
 %library for subplots
@@ -68,18 +68,23 @@
 %\date{April 2023}
 
 \begin{document}
+	\tableofcontents
 	%\maketitle
+	\include{Chapter/introduction}
 	\include{Chapter/foundations}
-	
+	\include{Chapter/numerical_setup}
+	\include{Chapter/modification_of_dissipative_couplings}
+	\include{Chapter/relative_number_squeezing}
+	\include{Chapter/outlook}
 	% \include{Chapter/0Xfoundations_fulltext}
 	%\include{Chapter/0X2-1Quantisierung}
 	%\include{Chapter/05Analytic_to_squeezing}
 	%\include{Chapter/Work}
 	%\include{Chapter/testchapter}
-	
+	\include{Chapter/bibliography.tex}
 	%\include{Chapter/00Titlepage.tex}
 	%\newpage\null\thispagestyle{empty}\newpage
-	%\tableofcontents
+	
 	%\include{Chapter/01Addendum}
 	
 	

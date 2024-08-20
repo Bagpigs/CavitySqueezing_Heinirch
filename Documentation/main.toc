@@ -1,0 +1,13 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {0.1}Introduction}{2}{section.0.1}%
+\contentsline {section}{\numberline {0.2}Foundations}{3}{section.0.2}%
+\contentsline {subsection}{\numberline {0.2.1}Derivation of EOM of many body system}{3}{subsection.0.2.1}%
+\contentsline {subsection}{\numberline {0.2.2}Further info to experiment: (rodrigo thesis p.103)}{4}{subsection.0.2.2}%
+\contentsline {subsection}{\numberline {0.2.3}The energy scales}{6}{subsection.0.2.3}%
+\contentsline {subsection}{\numberline {0.2.4}Number squeezing}{10}{subsection.0.2.4}%
+\contentsline {subsection}{\numberline {0.2.5}Bipartie entanglement}{10}{subsection.0.2.5}%
+\contentsline {subsection}{\numberline {0.2.6}Spin-nematic squeezing}{11}{subsection.0.2.6}%
+\contentsline {section}{\numberline {0.3}Numerical setup}{15}{section.0.3}%
+\contentsline {section}{\numberline {0.4}Modification of dissipative couplings}{16}{section.0.4}%
+\contentsline {section}{\numberline {0.5}Relative number squeezing}{17}{section.0.5}%
+\contentsline {section}{\numberline {0.6}Outlook}{18}{section.0.6}%

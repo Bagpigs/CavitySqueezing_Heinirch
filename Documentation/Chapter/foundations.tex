@@ -1,5 +1,5 @@
-\section{Foundations}
-\subsection{Derivation of EOM of many body system}
+\section{Foundations}\label{sec:foundation}
+\subsection{Derivation of EOM of many body system}\label{sec:fou_derivation_of_EOM}
 Hamiltonian of single atom dispersively coupled to single cavity mode by a running-wave laser drive 
 \begin{equation}
 	\hat{H}_{SP} = \frac{\hat{p}^2}{2M}- \hbar \omega_z \hat{F}_z + \hbar q \hat{F}^2_z + \hbar \omega_c \hat{a}^\dag \hat{a}-i \frac{\alpha_\nu}{2F}\left [ \bm{\hat{E}}^{(+)} \cross \bm{\hat{E}}^{(-)} \right ] \cdot \bm{\hat{F}} .
@@ -9,7 +9,7 @@ Operator $\hat{a}$ creates photon in z-polarized cavity mode of frequency $\omeg
 	\centering
 	\includegraphics[width=1\linewidth]{Images/scetch_pair_production.png}
 	\caption{Pair production}
-	\label{fig:scetch_pair_production}
+	\label{fig:scetch_pair_production} %should be better fig:fou_scetch_pair_production
 \end{figure}
 \\ \break
 Second quantization 
@@ -162,18 +162,40 @@ not sure, whether all plus /minus are choosen correctly in scetch, but the schem
 	\caption{Energy scetch}
 	\label{fig:energy_scales}
 \end{figure}
-We start in the Rb87 5 2 S1/2 F=1 (F... total angular momentum) fine structure) (https://steck.us/alkalidata/rubidium87numbers.1.6.pdf). We send light $\omega_d$ with $\lambda 790.02nm$. The transition to the  5 2 P3/2 (D2 transition) is around 980nm the transition to 5 2 Pb1/2 (D1) is around 995nm. thus, we are blue detuned with D1 and red detuned with D2 (check whether its not other way around)(one of the wavelength in Rb is wrong). This is called Tune out-wavelength. Even though it is not exactly the middle it is the effective middle. So the scalar polarization $\alpha_s$ is zero and there is no dipole potential trapping the atom. We are off resonant by THz and therefore wont reach any population in the 5 2 P levels (dispersive regime). N I S H A N T  Dogra phdthesis ch3.1. explains this detailed. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\linewidth]{Images/fou_energies.png}
+	\caption{Energy-level diagram}
+	\label{fig:fou_energy_diagram}
+\end{figure}
+Own text start
+\\
+To describe the pair creation process we define the two-photon detunings $\delta_\pm = \omega_d \pm \omega_z - \omega_c$ where $\omega_d$ is the drive frequency, $\omega_c$ the cavity frequency, and $\omega_z$ the linear Zeeman shift. The coupling rates are given by
+\begin{equation}\label{eq:fou_coupling}
+	\chi_\pm = \eta^2 \frac{\delta_\pm}{\delta_\pm^2 + \kappa^2}
+\end{equation}
+where $\eta$ is the two-photon Raman coupling, and $\kappa$ the cavity loss rate. \autoref{fig:fou_energy_diagram} visualizes the energies of the system. Further, $\eta$ is proportional to the amplitude of the drive $E_d$. We get for the power P of the laser drive
+\begin{equation}\label{eq:fou_power_eta_prop}
+	P \propto |E_d|^2 \propto \eta^2
+\end{equation} 
+Finally, the dissipative couplings $\gamma_\pm$ are given by 
+\begin{equation}\label{eq:fou_diss_coupl}
+	\gamma_\pm = \eta^2 \frac{2 \kappa}{\delta_\pm^2 + \kappa^2}.
+\end{equation}
+Using (\ref{eq:fou_coupling}) and (\ref{eq:fou_diss_coupl}) we get
+\begin{equation}
+	\gamma_\pm = \frac{2 \chi_\pm \kappa}{\delta_\pm}
+\end{equation}
+%Next we want to modify the dissipative couplings while leaving $\chi_+ = \chi_{+,fix}$ constant. 
+\\
+Own text end
+We start in the Rb87 5 2 S1/2 F=1 (F... total angular momentum) fine structure) (https://steck.us/alkalidata/rubidium87numbers.1.6.pdf). We send light $\omega_d$ with $\lambda 790.02nm$. The transition to the  5 2 P3/2 (D2 transition) is around 980nm the transition to 5 2 Pb1/2 (D1) is around 995nm. thus, we are blue detuned with D1 and red detuned with D2 (check whether its not other way around)(one of the wavelength in Rb is wrong). This is called Tune out-wavelength. Even though it is not exactly the middle it is the effective middle. So the scalar polarization $\alpha_s$ is zero and there is no dipole potential trapping the atom. We are off resonant by THz and therefore wont reach any population in the 5 2 P levels (dispersive regime). N I S H A N T  Dogra phdthesis ch3.1. explains this detailed.
 \\
 the energy of the $\pi$ photon is $\omega_\pm$ = $\omega_d \pm w_z$. So something like Thz $\pm$ e.g. $\omega_z = 2\pi 7 $MHz.
 \\
 The cavity wavelength is chosen to be similar to the drive wavelength: $|\delta_c| = |\omega_d - \omega_c| < 2\pi 10$MHz. But the cavity wavelength is off resonant to the $\pi$ photon wavelength if we compare this detuning $\delta_\pm$ (= diff $\omega_\pm$ and $\omega_c$) with the cavity loss $\kappa$. $|\delta_\pm | \gg \kappa$
 \\
-From somewhere we get
-\begin{equation}\label{eq:fou_coupling}
-	\chi_\pm = \eta^2 \frac{\delta_\pm}{\delta_\pm^2 + \kappa^2}
-\end{equation}
-and
-\begin{equation}
+\begin{equation}\label{eq:fou_decay}
 	\gamma_\pm = \frac{\eta^2 \kappa}{\delta_\pm^2 + \kappa^2}.
 \end{equation}
 \begin{equation}
@@ -230,11 +252,11 @@ Derivation of recoil energy:
 \begin{equation}
 	E_{rec} = \frac{p_{rec}^2}{2m} = \frac{\hbar^2 k^2}{2m} = \frac{\hbar^2 4 \pi^2}{2 m \lambda^2} = \hbar \omega_{rec}.
 \end{equation}
-\subsection{Number squeezing}
+\subsection{Number squeezing}\label{sec:fou_relative_number_squeezing}
 Following (thesis Finger)
 \\
 Introduce imbalance operator
-\begin{equation}
+\begin{equation}\label{eq:fou_def_imbalance_op}
 	\hat{J}_z = \frac{1}{2} (\hat{N}_{+1}- \hat{N}_{-1})
 \end{equation}
 where $\hat{N}_{+1} = \hat{c}_{+k,+1}^\dag \hat{c}_{+k,+1}$ and $\hat{N}_{-1} = \hat{c}_{-k,-1}^\dag \hat{c}_{-k,-1}$. 
@@ -267,7 +289,7 @@ fullfilling
 	\bm{J} = \bm{J}_A+ \bm{J}_B
 \end{equation}
 
-\subsection{Spin-nematic squeezing} (following kunkel thesis)https://www.kip.uni-heidelberg.de/Veroeffentlichungen/download.php/6440/temp/3991.pdf
+\subsection{Spin-nematic squeezing}\label{sec:fou_spin_nematic_squeezing} (following kunkel thesis)https://www.kip.uni-heidelberg.de/Veroeffentlichungen/download.php/6440/temp/3991.pdf
 Spin-1 states: we have basis $\ket{m_F}$ with $m_F \in \{-1,0,+1\}$ for the F = 1 hyperfine manifold
 \\ 
 Pure $\textbf{single-particle}$ state is (up to a global phase)
@@ -307,7 +329,7 @@ Aim to find complete set of operators which form a basis for hermitian operators
 they (as sigma matrices in spin 1/2 case) fulfill SU(2) commutation relation $[\hat{\bm{S}}_i,\hat{\bm{S}}_j] =i \epsilon_{ijk} \hat{\bm{S}}_k$. In contrast to spin-1/2 case, mean value of these three operators are not sufficient to uniquely determine the quantum state. eg in thesis. thus, additional observables required to unambiguously identify the spin states.
 //
 Here: quadrupole operators
-\begin{equation}
+\begin{equation}\label{eq:fou_def_quadrupole_operators}
 	\hat{\bm{Q}}_{ij} = \hat{\bm{S}}_i \hat{\bm{S}}_j + \hat{\bm{S}}_j \hat{\bm{S}}_i - \frac{4}{3} \delta_{ij} \mathds{1}_3
 \end{equation}
 Together with spin operators this gives 9 operators. 
@@ -383,7 +405,7 @@ Any unitary trafo generated by these three operators does not change $\Phi_L$.
 \\
 done with chapter!
 \\
-now following chapman paper: spin-nematic squeezed vacuum in a quantum gas
+now following chapman paper + supplementary material: spin-nematic squeezed vacuum in a quantum gas
 \\
 here: look at multi particle formalism.
 \\
@@ -407,7 +429,7 @@ Define squeezing parameter (in terms of quadratures of the operators: which oper
 \begin{equation}
 	\xi_{x}^2 = \langle ( \Delta (\cos \theta S_{x} + \sin \theta Q_{yz}))^2 \rangle /N
 \end{equation}
-with $\theta$ as the quadrature angle. Squeezing if variance of quadrature operator being less than SQL of N for some value of $\theta$. 
+with $\theta$ as the quadrature angle.(it makes sense that we have expectaion value. $\Delta$ is not defined as variance here, but as operator. this is similar to ammon script on heisenberg relation.) Squeezing if variance of quadrature operator being less than SQL of N for some value of $\theta$. 
 Therefore if $\xi_x^2 < 1$.
 \\
 protocol: Initial state $m_f = 0$. b) 25ms of evolution: spin nematic squeezing develops. c ) microwave pulse rotates quadrature phase around Qzz. Looking at kunkel thesis, this could be the spinor phase.  d) pi/2 RF pulse rotates transverse magnetization Sx into Sz (so rotation around Sy?).e) we now measure Sz thus before in c) Sx was squeezed. And before that in b) an arbitrary quadrature of cos theta Sx + sin theta Qyz was squeezed. 
@@ -419,6 +441,18 @@ So which states to we need to squeeze this quadrature operator? Do we have them 
 	\caption{}
 	\label{fig:chapmanfig1}
 \end{figure}
+\\ 
+Derive missing operators. Given:
+\begin{equation}
+	S_a = - i \hbar \epsilon_{abc} c_{bc}
+\end{equation}
+where $c_{ab} = b^\dag_a b_b$. Thus 
+\begin{align}
+	S_x = - i \hbar ( b_y^\dag b_z - b_z^\dag b_y)
+	\\
+	...
+\end{align}
+
 
 
 

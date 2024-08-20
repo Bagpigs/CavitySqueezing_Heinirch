@@ -19,6 +19,9 @@ def get_delta_p(eta, chi_p, kappa):
 def get_eta(delta, chi, kappa):  # works with (delta_p, chi_p) and (delta_m, chi_m)
     return np.sqrt(chi * (delta ** 2 + kappa ** 2) / delta)
 
+def power_func(y, a,r):
+    return a* y**r
+
 
 if __name__ == '__main__':
     hbar = 1.054571628 * (10 ** (-34))
@@ -34,7 +37,7 @@ if __name__ == '__main__':
     q = 144  # 2md second order splitting of Rb87 in Hz
 
     N = 80000  # 30000#80000 #80000 # atom number
-    DeltaN = 0.00 * N  # Fluctuations of Atom Number
+    DeltaN = 0.045 * N  # Fluctuations of Atom Number
     tbounds = np.array([0, 0.2])  # np.array([0,0.2]) # Evoution time in ms
     # eta = 2*np.pi*3.4e3 # Raman coupling
 
@@ -46,7 +49,7 @@ if __name__ == '__main__':
     eta_old_setup = 2 * np.pi * 1.7e3  # Raman coupling
     Kappa = 2 * np.pi * 1.25e6  # Cavity losses in Hz
     omegaZ = 2 * np.pi * 7.09e6  # 2*np.pi * 1.09e6 #Zeemansplitting in Hz
-    x_p = -0.0009662061050309727 * 1000  # Coupling of plus channel in Hz
+    x_p = - 0.15 * 2 * np.pi#-0.0009662061050309727 * 1000  # Coupling of plus channel in Hz
     delta_p_old_setup = get_delta_p(eta_old_setup, x_p, Kappa)
 
     # Define maximal eta, delta_p possible
@@ -55,7 +58,7 @@ if __name__ == '__main__':
     delta_p_max = get_delta_p(eta_max, x_p, Kappa)
 
     # Define corresponding vectors (equally spaced in delta_p)
-    N_delta_p_points = 6
+    N_delta_p_points = 30
     delta_p = np.linspace(delta_p_old_setup, delta_p_max, N_delta_p_points)
     eta = get_eta(delta_p, x_p, Kappa)
 
@@ -77,16 +80,16 @@ if __name__ == '__main__':
 
     # ?
     n_list = np.array([0])  # List of average initial pair number from classical seeds
-    Nrealiz = 600  # Number of TW simulations pro setting (used for averaging)
+    Nrealiz = 1000  # Number of TW simulations pro setting (used for averaging)
     # ?
     scalecoupling_k2 = 1  # 1  # Scale Coupling to m=0, k_x=+-2k mode, set to 0 to supress coupling to this mode and 1 to consider it correctily
 
     # EOM
-    # still to check, whether following constants are defined useful!
+    # still to understand: why rodrigo uses a = 2/3?
     a = 2 / 3
     a = (scalecoupling_k2) ** 2 * a
 
-    filename = 'tw_detuning_02_6_600_6_corr.bin'
+    filename = 'tw_detuning_02_6_600_6_corr_bla.bin'
     # Shape of tw_matrix: ( 6,         Npoints,    Nreliz,         length(n_list)
     #                     modes       time        realization     seeds
     # axis                0           1           2               3
@@ -117,9 +120,7 @@ if __name__ == '__main__':
                               'a': a,
                               'omegaR': omegaR
                               })
-    #check whether the tasks are done in correct order: I checked it: they do!
 
-    #later think about storage usage
     with Pool(processes=(cpu_count() - 1)) as pool:
         # perform calculations
         results = pool.map(tw_for_Npoints_Nrealiz_n_seeds, inital_values_dic_list)

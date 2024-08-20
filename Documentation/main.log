@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.12)  24 MAY 2024 14:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.12)  11 JUN 2024 17:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -654,7 +654,7 @@ Package biblatex Info: ... file 'blx-dm.def' found.
 File: blx-dm.def 2023/03/05 v3.19 biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
-Package biblatex Info: ... file 'alphabetic.dbx' not found.
+Package biblatex Info: ... file 'numeric.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \c@afterword=\count352
@@ -766,12 +766,12 @@ File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
 \biburllcskip=\muskip21
 \c@smartand=\count428
 )
-Package biblatex Info: Trying to load bibliography style 'alphabetic'...
-Package biblatex Info: ... file 'alphabetic.bbx' found.
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
 
-(C:\Users\Heinrich\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/bbx\alphabe
-tic.bbx
-File: alphabetic.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
+(C:\Users\Heinrich\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/bbx\numeric
+.bbx
+File: numeric.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
 
@@ -781,17 +781,18 @@ File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
 \c@bbx:relatedcount=\count429
 \c@bbx:relatedtotal=\count430
 ))
-Package biblatex Info: Trying to load citation style 'alphabetic'...
-Package biblatex Info: ... file 'alphabetic.cbx' found.
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
 
-(C:\Users\Heinrich\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/cbx\alphabe
-tic.cbx
-File: alphabetic.cbx 2023/03/05 v3.19 biblatex citation style (PK/MW)
+(C:\Users\Heinrich\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/cbx\numeric
+.cbx
+File: numeric.cbx 2023/03/05 v3.19 biblatex citation style (PK/MW)
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
 Package biblatex Info: Redefining '\footcitetext'.
 Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
 Package biblatex Info: Redefining '\textcite'.
 Package biblatex Info: Redefining '\textcites'.
 Package biblatex Info: Redefining '\cites'.
@@ -1004,7 +1005,11 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 
 \@quotelevel=\count439
 \@quotereset=\count440
-(main.aux (Chapter/foundations.aux))
+(main.aux (Chapter/introduction.aux) (Chapter/foundations.aux)
+(Chapter/numerical_setup.aux)
+(Chapter/modification_of_dissipative_couplings.aux)
+(Chapter/relative_number_squeezing.aux) (Chapter/outlook.aux)
+(Chapter/bibliography.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
@@ -1106,33 +1111,47 @@ Package biblatex Info: Automatic encoding selection.
 \openout4 = `main.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'main.bbl' not found.
-
-No file main.bbl.
+Package biblatex Info: ... file 'main.bbl' found.
+ (main.bbl)
 Package biblatex Info: Reference section=0 on input line 70.
 Package biblatex Info: Reference segment=0 on input line 70.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-\openout2 = `Chapter/foundations.aux'.
-
-(Chapter/foundations.tex
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 4.
+ (main.toc
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 2.
 
 
 (C:\Users\Heinrich\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
 
 (C:\Users\Heinrich\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 2.
 
 (C:\Users\Heinrich\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-<Images/scetch_pair_production.png, id=34, 273.02pt x 147.55125pt>
+))
+\tf@toc=\write6
+\openout6 = `main.toc'.
+
+
+[1
+
+
+{C:/Users/Heinrich/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+\openout2 = `Chapter/introduction.aux'.
+
+
+(Chapter/introduction.tex) [2
+
+]
+\openout2 = `Chapter/foundations.aux'.
+
+ (Chapter/foundations.tex
+<Images/scetch_pair_production.png, id=80, 273.02pt x 147.55125pt>
 File: Images/scetch_pair_production.png Graphic file (type png)
 <use Images/scetch_pair_production.png>
 Package pdftex.def Info: Images/scetch_pair_production.png  used on input line 
@@ -1148,90 +1167,162 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--18
 
  []
 
-[1
+[3
 
 
-{C:/Users/Heinrich/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./Images/
-scetch_pair_production.png>] [2]
-<Images/scetch_quench_parametric_amplification.png, id=74, 376.90813pt x 143.53
-625pt>
+
+ <./Images/scetch_pair_production.png>] [4]
+<Images/scetch_quench_parametric_amplification.png, id=117, 376.90813pt x 143.5
+3625pt>
 File: Images/scetch_quench_parametric_amplification.png Graphic file (type png)
 
 <use Images/scetch_quench_parametric_amplification.png>
 Package pdftex.def Info: Images/scetch_quench_parametric_amplification.png  use
 d on input line 153.
 (pdftex.def)             Requested size: 433.62pt x 165.13329pt.
- [3]
-<Images/energy_scetch.jpeg, id=89, 1284.8pt x 796.9775pt>
+ [5]
+<Images/energy_scetch.jpeg, id=132, 1284.8pt x 796.9775pt>
 File: Images/energy_scetch.jpeg Graphic file (type jpg)
 <use Images/energy_scetch.jpeg>
 Package pdftex.def Info: Images/energy_scetch.jpeg  used on input line 161.
 (pdftex.def)             Requested size: 433.62pt x 268.97437pt.
-
-Overfull \hbox (8.37703pt too wide) in paragraph at lines 158--172
-\OT1/cmr/m/n/12 men-tum) fine struc-ture) (https://steck.us/alkalidata/rubidium
-87numbers.1.6.pdf). We
- []
+<Images/fou_energies.png, id=133, 172.14313pt x 192.72pt>
+File: Images/fou_energies.png Graphic file (type png)
+<use Images/fou_energies.png>
+Package pdftex.def Info: Images/fou_energies.png  used on input line 167.
+(pdftex.def)             Requested size: 216.81pt x 242.72849pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[4 <./Images/scetch_quench_parametric_amplification.png>] [5 <./Images/energy_s
-cetch.jpeg>] [6]
-Overfull \hbox (9.79355pt too wide) in paragraph at lines 248--252
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6 <./Images/scetch_quench_parametric_amplification.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 188--198
+
+ []
+
+[7 <./Images/energy_scetch.jpeg>] [8 <./Images/fou_energies.png>] [9]
+Overfull \hbox (9.79355pt too wide) in paragraph at lines 270--274
 \OT1/cmr/m/n/12 We choose sound ini-tial val-ues:N = 80000,eta = 2*np.pi*1.7e3 
 ,Kappa = 2*np.pi*1.25e6,
  []
 
 
-Overfull \hbox (28.53928pt too wide) in paragraph at lines 248--252
+Overfull \hbox (28.53928pt too wide) in paragraph at lines 270--274
 \OT1/cmr/m/n/12 omegaZ = 2*np.pi *7.09e6,deltaC = -2*np.pi *25.8e6 and get delt
 ap = -117558397.09733006
  []
 
 
-Overfull \hbox (6.76572pt too wide) in paragraph at lines 248--252
+Overfull \hbox (6.76572pt too wide) in paragraph at lines 270--274
 \OT1/cmr/m/n/12 and xp=(eta**2*deltap/(deltap**2+(Kappa)**2))/1000 , Pair cou-p
 ling for chi+ Chan-
  []
 
-[7]
-Overfull \hbox (160.59328pt too wide) in paragraph at lines 270--274
+[10]
+Overfull \hbox (160.59328pt too wide) in paragraph at lines 292--296
 \OT1/cmr/m/n/12 (following kunkel thesis)https://www.kip.uni-heidelberg.de/Vero
 effentlichungen/download.php/6440/temp/3991.pdf
  []
 
 LaTeX Font Info:    Trying to load font information for U+dsrom on input line 3
-11.
+33.
 
 (C:\Users\Heinrich\AppData\Local\Programs\MiKTeX\tex/latex/doublestroke\udsrom.
 fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
-) [8] [9]
-<chapman_fig1.png, id=153, 551.56062pt x 119.44624pt>
+) [11] [12] [13]
+<chapman_fig1.png, id=221, 551.56062pt x 119.44624pt>
 File: chapman_fig1.png Graphic file (type png)
 <use chapman_fig1.png>
-Package pdftex.def Info: chapman_fig1.png  used on input line 416.
+Package pdftex.def Info: chapman_fig1.png  used on input line 440.
 (pdftex.def)             Requested size: 303.53267pt x 65.73572pt.
- [10]) [11 <./chapman_fig1.png>] (main.aux (Chapter/foundations.aux))
+) [14 <./chapman_fig1.png>]
+\openout2 = `Chapter/numerical_setup.aux'.
+
+ (Chapter/numerical_setup.tex
+Overfull \hbox (15.92497pt too wide) in paragraph at lines 4--6
+\OT1/cmr/m/n/12 tion 0.2.1[][][]. For solv-ing sys-tem of or-di-nary dif-fer-en
+-tial equa-tions I used from scipy.integrate
+ []
+
+) [15
+
+
+
+]
+\openout2 = `Chapter/modification_of_dissipative_couplings.aux'.
+
+ (Chapter/modification_of_dissipative_couplings.tex
+
+LaTeX Warning: Reference `eqom' on page 16 undefined on input line 10.
+
+) [16
+
+
+
+]
+\openout2 = `Chapter/relative_number_squeezing.aux'.
+
+ (Chapter/relative_number_squeezing.tex
+
+LaTeX Warning: Reference `eq:fou_def_delta_p' on page 17 undefined on input lin
+e 2.
+
+) [17
+
+
+
+]
+\openout2 = `Chapter/outlook.aux'.
+
+ (Chapter/outlook.tex) [18
+
+
+
+]
+\openout2 = `Chapter/bibliography.aux'.
+
+ (Chapter/bibliography.tex)
+Overfull \hbox (9.97694pt too wide) in paragraph at lines 84--84
+[]\OT1/cmr/m/it/12 scipy.integrate.solve[]ivp &#x2014; SciPy v1.13.1 Man-ual --
+- docs.scipy.org\OT1/cmr/m/n/12 . [][]$\OT1/cmtt/m/n/12 https :
+ []
+
+[19
+
+
+
+
+] (main.aux (Chapter/introduction.aux) (Chapter/foundations.aux)
+(Chapter/numerical_setup.aux)
+(Chapter/modification_of_dissipative_couplings.aux)
+(Chapter/relative_number_squeezing.aux) (Chapter/outlook.aux)
+(Chapter/bibliography.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D789BF8DABEF08ACCE53F1E1CB0321FF;1338.
+(rerunfilecheck)             Checksum: 59006D46938A3F17709719099FEA713B;2064.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24273 strings out of 474485
- 433780 string characters out of 5742318
+ 24716 strings out of 474485
+ 447124 string characters out of 5742318
  1945542 words of memory out of 5000000
- 46121 multiletter control sequences out of 15000+600000
- 570617 words of font info for 82 fonts, out of 8000000 for 9000
+ 46488 multiletter control sequences out of 15000+600000
+ 572040 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,14n,93p,1021b,1749s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,14n,93p,1021b,1832s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Heinrich\AppData\Local\MiKTeX\fonts/pk/ljfour/public/mathabx/dpi72
 0\mathb12.pk> <C:\Users\Heinrich\AppData\Local\MiKTeX\fonts/pk/ljfour/public/ma
 thabx/dpi600\matha6.pk> <C:\Users\Heinrich\AppData\Local\MiKTeX\fonts/pk/ljfour
@@ -1239,22 +1330,26 @@ thabx/dpi600\matha6.pk> <C:\Users\Heinrich\AppData\Local\MiKTeX\fonts/pk/ljfour
 s/pk/ljfour/public/mathabx/dpi600\matha8.pk> <C:\Users\Heinrich\AppData\Local\M
 iKTeX\fonts/pk/ljfour/public/mathabx/dpi600\matha12.pk><C:/Users/Heinrich/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/He
-inrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb>
-<C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmmi12.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmmi6.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/Heinrich/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Users/Heinr
-ich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
-Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
-8.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/doublestroke/dsrom12.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (11 pages, 584566 bytes).
+inrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
+><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmex10.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmmi12.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/Heinrich/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Heinrich/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/Heinrich/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C
+:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mr12.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmr8.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmsy10.pfb><C:/Users/Heinrich/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/Heinrich/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Users/Heinrich/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/doublestroke/dsrom12.pfb><C:/Users/
+Heinrich/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm
+10.pfb>
+Output written on main.pdf (19 pages, 673055 bytes).
 PDF statistics:
- 316 PDF objects out of 1000 (max. 8388607)
- 82 named destinations out of 1000 (max. 500000)
- 89 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 437 PDF objects out of 1000 (max. 8388607)
+ 109 named destinations out of 1000 (max. 500000)
+ 134 words of extra memory for PDF output out of 10000 (max. 10000000)
 
