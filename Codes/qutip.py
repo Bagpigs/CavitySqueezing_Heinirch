@@ -1,7 +1,7 @@
 import numpy as np
 from qutip import *
 
-N = 100
+N = 101
 
 psi_p = fock(N, 50)#int(N/2))
 psi_0 = fock(N, 0)
