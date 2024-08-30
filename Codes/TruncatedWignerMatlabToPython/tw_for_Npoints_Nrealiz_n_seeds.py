@@ -41,7 +41,8 @@ def tw_for_Npoints_Nrealiz_n_seeds(initial_values_dic):
             phi_initial[4] = np.sqrt(N_temp_therm2)  # Atoms in mF = 1, -k
             phi_initial[5] = 0 # Atoms in  mF = 0, +-2k_x
 
-            # Sample Quantum 1/2 noise
+            # Sample Quantum 1/2 noise # like it is written here, the variance for each quantity is 1 (0.5 real part variance + 0.5 imag part variance)
+            # correct would be to replace np.sqrt(0.5) by 0.5 everywhere in the lines below
             phi_initial[0] = phi_initial[0] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
                              np.random.normal(loc=0, scale=1, size=1)[0]
             phi_initial[1] = phi_initial[1] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \

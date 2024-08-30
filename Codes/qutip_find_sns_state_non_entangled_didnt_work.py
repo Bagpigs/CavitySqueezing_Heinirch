@@ -1,5 +1,5 @@
 import numpy as np
-from qutip import *
+from qutip_find_sns_state_non_entangled_didnt_work import *
 
 N = 101
 

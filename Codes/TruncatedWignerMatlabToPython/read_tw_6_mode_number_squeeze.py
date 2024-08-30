@@ -1,12 +1,6 @@
-from multiprocessing import Pool, cpu_count
-
-import numpy as np
 # import time as timemodule
 import matplotlib.pyplot as plt
-from scipy.optimize import curve_fit
-
-from Codes.TruncatedWignerMatlabToPython.tw_for_Npoints_Nrealiz_n_seeds import tw_for_Npoints_Nrealiz_n_seeds
-
+import numpy as np
 
 
 # np.random.seed(0)
@@ -20,19 +14,20 @@ def get_delta_p(eta, chi_p, kappa):
 def get_eta(delta, chi, kappa):  # works with (delta_p, chi_p) and (delta_m, chi_m)
     return np.sqrt(chi * (delta ** 2 + kappa ** 2) / delta)
 
-def time_in_micro_s_to_index(t1_micro_s,time):
-    t1_milli_s = t1_micro_s /1000
+
+def time_in_micro_s_to_index(t1_micro_s, time):
+    t1_milli_s = t1_micro_s / 1000
     t_0 = time[0]
     t_end = time[-1]
     timesteps = len(time)
-    t_frac = (t1_milli_s-time[0]) / (time[-1] - time[0])
-    index_frac = t_frac * (timesteps-1)
+    t_frac = (t1_milli_s - time[0]) / (time[-1] - time[0])
+    index_frac = t_frac * (timesteps - 1)
     index_frac = round(index_frac)
     return index_frac
 
-def power_func(y, a,r):
-    return a* y**r
 
+def power_func(y, a, r):
+    return a * y ** r
 
 
 if __name__ == '__main__':
@@ -53,7 +48,6 @@ if __name__ == '__main__':
     tbounds = np.array([0, 0.2])  # np.array([0,0.2]) # Evoution time in ms
     # eta = 2*np.pi*3.4e3 # Raman coupling
 
-
     Npoints = 2000
     time = np.linspace(tbounds[0], tbounds[1], Npoints)
 
@@ -61,7 +55,7 @@ if __name__ == '__main__':
     eta_old_setup = 2 * np.pi * 1.7e3  # Raman coupling
     Kappa = 2 * np.pi * 1.25e6  # Cavity losses in Hz
     omegaZ = 2 * np.pi * 7.09e6  # 2*np.pi * 1.09e6 #Zeemansplitting in Hz
-    x_p = - 0.15 * 2 * np.pi#-0.0009662061050309727 * 1000  # Coupling of plus channel in Hz
+    x_p = - 0.15 * 2 * np.pi  # -0.0009662061050309727 * 1000  # Coupling of plus channel in Hz
     delta_p_old_setup = get_delta_p(eta_old_setup, x_p, Kappa)
 
     # Define maximal eta, delta_p possible
@@ -103,7 +97,7 @@ if __name__ == '__main__':
 
     filename = 'tw_30_1000_045.bin'
 
-squeezing_vec = np.zeros((N_delta_p_points),dtype=np.csingle)
+squeezing_vec = np.zeros((N_delta_p_points), dtype=np.csingle)
 newfp = np.memmap(filename, dtype=np.csingle, mode='r', shape=(N_delta_p_points, 6, Npoints, Nrealiz, 1))
 
 # index_min_squeezing_vec = np.zeros((N_delta_p_points))
@@ -161,124 +155,122 @@ for i in range(N_delta_p_points):
     number_squeezing = xi_N_squared / xi_N_squared_coh
 
     ### Plot squeezing over time Part A
-    font = {'size': 12}
-    plt.rc('font', **font)
-    if i == 0 or i == N_delta_p_points-1:
-        round_delta_str = str(round(delta_p[i] / 2 / np.pi / 10 ** 6, 2))
-        plt.plot(time*1000,number_squeezing,label = '$\\delta_+ / 2 \\pi = $' + round_delta_str +  ' MHz')
-
-
-
+    # font = {'size': 15}
+    # plt.rc('font', **font)
+    # if i == 0 or i == N_delta_p_points - 1:
+    #     round_delta_str = str(round(delta_p[i] / 2 / np.pi / 10 ** 6, 2))
+    #     plt.plot(time * 1000, number_squeezing, label='$\\delta_+ / 2 \\pi = $' + round_delta_str + ' MHz')
+    #
 
 
     squeezing_vec[i] = number_squeezing.min()
     # pairs_max_squeezing_vec[i] = rho4_mean[number_squeezing.argmin()]
     #
-    idx_loose_squeezing = np.argwhere(np.diff(np.sign(number_squeezing[:,0]-1)))[-1][0]
+    idx_loose_squeezing = np.argwhere(np.diff(np.sign(number_squeezing[:, 0] - 1)))[-1][0]
     pairs_loose_squeezing_vec[i] = rho2_mean[idx_loose_squeezing]
     time_loose_squeezing_vec[i] = time[idx_loose_squeezing]
 
-
     ### plot squeezing over number of pairs Part A
-    #
-    # font = {'size': 12}
+    # #
+    # font = {'size': 15}
     # plt.rc('font', **font)
     # if i == 0 or i == N_delta_p_points-1:
     #     round_delta_str = str(round(delta_p[i] / 2 / np.pi / 10**6,2))
     #     plt.plot(rho2_mean[0:440],number_squeezing[0:440],label = '$\\delta_+ / 2 \\pi = $' + round_delta_str +  ' MHz')
-
-
 
 ### plot squeezing over number of pairs Part B
 # plt.yscale('log')
 # plt.xlabel('$\\langle N_p \\rangle$')
 # plt.ylabel('$\\xi_N^2 / \\xi_{N,coh}^2$')
 # plt.hlines(1,0,300,linestyles='dashed', label = 'SQL', colors='grey')
+# plt.tight_layout()
 # plt.legend()
 # plt.savefig('plots/rns_sq_npair_bla.svg')
 # plt.show()
 
 
-
 ### plot number of pairs at loose squeezing: +channel # and fititng included
 #
 #
-# font = {'size': 13}
+# font = {'size': 16}
 # plt.rc('font', **font)
 #
 # # FIND FIT TO CURVE WITH np.polyfit
-#
-# coefficients1 = np.polyfit(delta_p, pairs_loose_squeezing_vec, 1)
-# coefficients2 = np.polyfit(delta_p, pairs_loose_squeezing_vec, 2)
-# coefficients3 = np.polyfit(delta_p, pairs_loose_squeezing_vec, 3)
-# coefficients4 = np.polyfit(delta_p, pairs_loose_squeezing_vec, 4)
-#
-# print(coefficients2)
-# print(coefficients3)
-# print(coefficients4)
+# #
+# # coefficients1 = np.polyfit(delta_p, pairs_loose_squeezing_vec, 1)
+# # coefficients2 = np.polyfit(delta_p, pairs_loose_squeezing_vec, 2)
+# # coefficients3 = np.polyfit(delta_p, pairs_loose_squeezing_vec, 3)
+# # coefficients4 = np.polyfit(delta_p, pairs_loose_squeezing_vec, 4)
+# #
+# # print(coefficients2)
+# # print(coefficients3)
+# # print(coefficients4)
 #
 # #create polynomial function from the coefficients
-# polyfit1_func = np.poly1d(coefficients1)
-# polyfit2_func = np.poly1d(coefficients2)
-# polyfit3_func = np.poly1d(coefficients3)
-# polyfit4_func = np.poly1d(coefficients4)
-#
-# # Generate y values
-# polyfit1 = polyfit1_func(delta_p)
-# polyfit2 = polyfit2_func(delta_p)
-# polyfit3 = polyfit3_func(delta_p)
-# polyfit4 = polyfit4_func(delta_p)
-#
-# mse1 = np.mean((pairs_loose_squeezing_vec- polyfit1) **2)
-# mse2 = np.mean((pairs_loose_squeezing_vec- polyfit2) **2)
-# mse3 = np.mean((pairs_loose_squeezing_vec- polyfit3) **2)
-# mse4 = np.mean((pairs_loose_squeezing_vec- polyfit4) **2)
-# print('hi',mse1,mse2,mse3,mse4)
+# # polyfit1_func = np.poly1d(coefficients1)
+# # polyfit2_func = np.poly1d(coefficients2)
+# # polyfit3_func = np.poly1d(coefficients3)
+# # polyfit4_func = np.poly1d(coefficients4)
+# #
+# # # Generate y values
+# # polyfit1 = polyfit1_func(delta_p)
+# # polyfit2 = polyfit2_func(delta_p)
+# # polyfit3 = polyfit3_func(delta_p)
+# # polyfit4 = polyfit4_func(delta_p)
+# #
+# # mse1 = np.mean((pairs_loose_squeezing_vec- polyfit1) **2)
+# # mse2 = np.mean((pairs_loose_squeezing_vec- polyfit2) **2)
+# # mse3 = np.mean((pairs_loose_squeezing_vec- polyfit3) **2)
+# # mse4 = np.mean((pairs_loose_squeezing_vec- polyfit4) **2)
+# # print('hi',mse1,mse2,mse3,mse4)
 #
 # # FIND FIT TO CURVE WITH curve_fit
 #
 # ##Initial guess for the coefficients
-
+#
 # #[ 3.38361502e-15 -2.18497152e-07 -1.85816865e+01]
-# initial_guess = [3.38*10**(-15) , 2]
-#
-# # # Fit the model to the data
-# params, params_covariance = curve_fit(power_func, -delta_p, pairs_loose_squeezing_vec, p0=initial_guess)
-# print('power params',params)
-#
-# power_func_fit = power_func(-delta_p, *params)
-#
-# mse1 = np.mean((pairs_loose_squeezing_vec- power_func_fit) **2)
-# print('approx mse', np.mean((pairs_loose_squeezing_vec- 1.331*(10**(-14))* (-delta_p)**(1.937)) **2))
-# print('powermse',mse1)
-# plt.plot(-delta_p/2/np.pi/10**6, power_func_fit)
-#
-# # plt.plot(-delta_p/2/np.pi/10**6, power_func(delta_p,initial_guess[0],initial_guess[1]))
-#
-# plt.plot(-delta_p/2/np.pi/10**6, pairs_loose_squeezing_vec)
+# # initial_guess = [3.38*10**(-15) , 2]
+# #
+# # # # Fit the model to the data
+# # params, params_covariance = curve_fit(power_func, -delta_p, pairs_loose_squeezing_vec, p0=initial_guess)
+# # print('power params',params)
+# #
+# # power_func_fit = power_func(-delta_p, *params)
+# #
+# # mse1 = np.mean((pairs_loose_squeezing_vec- power_func_fit) **2)
+# # print('approx mse', np.mean((pairs_loose_squeezing_vec- 1.331*(10**(-14))* (-delta_p)**(1.937)) **2))
+# # print('powermse',mse1)
+# # plt.plot(-delta_p/2/np.pi/10**6, power_func_fit)
+# #
+# # # plt.plot(-delta_p/2/np.pi/10**6, power_func(delta_p,initial_guess[0],initial_guess[1]))
+# #
+# plt.plot(delta_p/2/np.pi/10**6, pairs_loose_squeezing_vec)
 # # plt.plot(delta_p/2/np.pi/10**6, polyfit1)
 # # plt.plot(delta_p/2/np.pi/10**6, polyfit2)
 # # plt.plot(delta_p/2/np.pi/10**6, polyfit3)
-# plt.ylabel('$\\langle N_p \\rangle$')
+# plt.ylabel('$\\langle N_p \\rangle_{max,sq}$')
 # plt.xlabel('$\\delta_+/2\\pi \\,\\,$(MHz)')
 # plt.legend()
 # # plt.xscale('log')
-# # plt.xlim((delta_p/2/np.pi/10**6)[0],(delta_p/2/np.pi/10**6)[-1])
+# plt.xlim((delta_p/2/np.pi/10**6)[0],(delta_p/2/np.pi/10**6)[-1])
 # # plt.yscale('log')
-# # plt.savefig('plots/rns_npair_det_sq_loose_bla.svg')
+# plt.tight_layout()
+# plt.savefig('plots/rns_npair_det_sq_loose_bla.svg')
 # plt.show()
 
 ### Plot t_loose_squeezing over detuning
+#
+# font = {'size': 16}
+# plt.rc('font', **font)
+#
 # plt.plot(delta_p/2/np.pi/10**6, time_loose_squeezing_vec*1000)
 # plt.ylabel('$t \\, \\, (\\mu s)$')
 # plt.xlabel('$\\delta_+/2\\pi \\,\\,$(MHz)')
 # plt.xlim((delta_p/2/np.pi/10**6)[0],(delta_p/2/np.pi/10**6)[-1])
+# plt.tight_layout()
 # plt.legend()
 # plt.savefig('plots/rns_t_det_sq_loose_bla.svg')
 # plt.show()
-
-
-
 
 
 # Plot number pairs
@@ -292,14 +284,10 @@ for i in range(N_delta_p_points):
 # # #
 
 
-
 ### plot squeezing over detuing
 ### and Find fits to squeezing behaviour
-#
-# font = {'size': 13}
-# plt.rc('font', **font)
-#
-#
+
+
 # def laurent_polynomial(y, *coefficients):
 #     return sum(c * y**(-i) for i, c in enumerate(coefficients))
 #
@@ -344,23 +332,23 @@ for i in range(N_delta_p_points):
 #
 # # plt.title('+ channel over detuning')
 # # plt.plot(delta_p/2/np.pi/10**6, 10*np.log10(squeezing_vec))
-# plt.ylabel('$\\xi_N^2 / \\xi_{N,coh}^2$')
+# plt.ylabel('$(\\xi_N^2 / \\xi_{N,coh}^2)_{min}$')
 # plt.xlabel('$\\delta_+/2\\pi \\,\\,$(MHz)')
 # # plt.yscale('log')
 # # plt.xscale('log')
+# plt.tight_layout()
+#
 # plt.savefig('plots/rns_sq_max_det_bla.svg')
 # plt.show()
 
 
-
 ### plot squeezing over time Part B
-plt.ylabel('$\\xi_N^2 / \\xi_{N,coh}^2$')
-plt.xlabel('$t \\, \\, (\\mu s$)')
-plt.yscale('log')
-plt.hlines(1,0,200,linestyles='dashed', label = 'SQL', colors='grey')
-plt.legend()
-plt.savefig('plots/rns_sq_time_bla.svg')
-plt.show()
-
-
-
+# plt.ylabel('$\\xi_N^2 / \\xi_{N,coh}^2$')
+# plt.xlabel('$t \\, \\, (\\mu s$)')
+# plt.yscale('log')
+# plt.hlines(1, 0, 200, linestyles='dashed', label='SQL', colors='grey')
+# plt.tight_layout()
+#
+# plt.legend()
+# plt.savefig('plots/rns_sq_time_bla.svg')
+# plt.show()

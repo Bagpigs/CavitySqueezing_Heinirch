@@ -104,20 +104,63 @@ if __name__ == '__main__':
 ##end HEADER
 
 
+# Plot wineland over theta Part 0
+# def multiple_formatter(denominator=2, number=np.pi, latex='\pi'):
+#     def gcd(a, b):
+#         while b:
+#             a, b = b, a%b
+#         return a
+#     def _multiple_formatter(x, pos):
+#         den = denominator
+#         num = int(np.rint(den*x/number))
+#         com = gcd(num,den)
+#         (num,den) = (int(num/com),int(den/com))
+#         if den==1:
+#             if num==0:
+#                 return r'$0$'
+#             if num==1:
+#                 return r'$%s$'%latex
+#             elif num==-1:
+#                 return r'$-%s$'%latex
+#             else:
+#                 return r'$%s%s$'%(num,latex)
+#         else:
+#             if num==1:
+#                 return r'$\frac{%s}{%s}$'%(latex,den)
+#             elif num==-1:
+#                 return r'$\frac{-%s}{%s}$'%(latex,den)
+#             else:
+#                 return r'$\frac{%s%s}{%s}$'%(num,latex,den)
+#     return _multiple_formatter
+#
+# class Multiple:
+#     def __init__(self, denominator=2, number=np.pi, latex='\pi'):
+#         self.denominator = denominator
+#         self.number = number
+#         self.latex = latex
+#
+#     def locator(self):
+#         return plt.MultipleLocator(self.number / self.denominator)
+#
+#     def formatter(self):
+#         return plt.FuncFormatter(multiple_formatter(self.denominator, self.number, self.latex))
+
+
 # Shape of tw_matrix_variable_detuning (N_delta_p_points,      6,         Npoints,     Nreliz,         length(n_list)
 #                                       detunings               modes       time        realization     seeds
 # axis                                  0                       1           2               3           4
 
 
-font = {'size': 12}
+font = {'size': 20}
 plt.rc('font', **font)
 
 squeezing_vec = np.zeros((N_delta_p_points),dtype=np.csingle)
+time_loose_wineland_vec = np.zeros(N_delta_p_points)
 newfp = np.memmap(filename, dtype=np.csingle, mode='r', shape=(N_delta_p_points, 6, Npoints, Nrealiz, 1))
 
 
 
-for i in (0,N_delta_p_points-1):
+for i in range(1):#N_delta_p_points):
 
     tw_matrix = newfp[i]
 
@@ -131,32 +174,42 @@ for i in (0,N_delta_p_points-1):
 
     # Shape of S_x´: (      Npoints,        Nrealiz,            length(n_list)
 
+    #def following [chapman,2012] #double checked!
     S_x = 1/ 2**0.5 * (np.conj(phi1_vec) * phi0_vec + np.conj(phi0_vec) * phi2_vec + \
                        np.conj(phi0_vec) * phi1_vec + np.conj(phi2_vec) * phi0_vec)
     print(np.shape(S_x))
 
     S_x_mean = np.mean(S_x, axis = 1)
-    S_x_var = np.var(S_x, axis=1)
+    #S_x_var = np.var(S_x, axis=1) # this is too big by factor 2
 
     S_y = 1 / (2**0.5 * 1j) * ( np.conj(phi1_vec) * phi0_vec - np.conj(phi0_vec) * phi1_vec + \
                                 np.conj(phi0_vec) * phi2_vec - np.conj(phi2_vec) * phi0_vec )
-    S_y_var = np.var(S_y, axis=1)
+    #S_y_var = np.var(S_y, axis=1) # this is too big by factor 2
 
+    #def following [wang,2020] #double checked!
     S_z = np.conj(phi1_vec) * phi1_vec - np.conj(phi2_vec) * phi2_vec
-    S_z_var = np.var(S_z,axis=1)
+    #S_z_var = np.var(S_z,axis=1) # if I once use this term: here I would have to think about factor two, in rns we defined j_z with a factor 1/2
     # S_z_var = np.var(S_z, axis=1)
 
-    #def following wang paper 2020
+    #def following wang paper 2020 #double checked!
     Q_yz = 1/ 2**0.5 * ( -1j * np.conj(phi1_vec) * phi0_vec + 1j* np.conj(phi0_vec) * phi2_vec + \
                        1j * np.conj(phi0_vec) * phi1_vec -1j* np.conj(phi2_vec) * phi0_vec)
     # Q_xz = 2 * S_x * S_z
 
-    #calculated on my own (maybe double check calc with matrix calc)
+    #calculated on my own (maybe double check calc with matrix calc) #note, that this operators is not symmetric and not of the quadratic from c_q^* c_q but sort of third order
     comm_S_x_Q_yz = 1j * (np.conj(phi1_vec)*phi1_vec + np.conj(phi1_vec) * phi2_vec - 2 * np.conj(phi0_vec) * phi0_vec + np.conj(phi2_vec) * phi1_vec + np.conj(phi2_vec) * phi2_vec)
     #absolute value of comm expecatation value for t=0, 80000 atoms is 160,000. we are squeezed, if the variance of one quatdrature is below 160,000 / 2 . at a certain time this value shrinks from 160,000 to 43,000
 
+
     comm_S_x_Q_yz_exp_absolute_val = np.abs(np.mean(comm_S_x_Q_yz, axis = 1))
 
+    #shape comm_S_x_Q_yz_exp_absolute_val:
+    #  axis     0               1
+    #           npoints         seeds
+
+
+
+    #is this really called heisenberg limit? anyways. is the variance of one quadrature is lower than this, then we have squeezing
     heis_limit_for_one_quadrature_var = comm_S_x_Q_yz_exp_absolute_val/2
 
 
@@ -164,86 +217,132 @@ for i in (0,N_delta_p_points-1):
     # Q_xz_var = np.var(Q_xz, axis=1)
     # for some reason this var starts with 150,000 (so around 160,000) and not around 80,000 where it should start
 
-    #20 partition is small enough? no. 200 is good, but needs 10min on my pc
-    theta = np.linspace(0, 2 * np.pi, 20)
+    #i did the csv data with 300 theta values
+    theta = np.linspace(0, 2 * np.pi, 300)
 
     quadrature_operator_matrix = np.array([np.cos(theta[i]) * S_x + np.sin(theta[i]) * Q_yz for i in range(len(theta))])
-
 
 
     #shape quadrature operator matrix:
     #  axis     0               1               2               3
     #           theta           npoints         nrealiz         seeds
 
-    quadrature_operator_matrix_var = np.var(quadrature_operator_matrix, axis=2)
+
+
+    # ASSUME that the VAR-FACTOR-2-PROBLEM is due to our initialization of the truncated wigner:
+    # this here is the first point where we calculate a variance and therefor we just add the factor 2 here.
+    # in any further calcuations this problem should be solved.
+    quadrature_operator_matrix_var = np.var(quadrature_operator_matrix, axis=2) / 2
     print(np.shape(quadrature_operator_matrix_var))
 
-    quadrature_operator_matrix_var_min = np.min(quadrature_operator_matrix_var, axis=0)
-    print(np.shape(quadrature_operator_matrix_var_min))
+    #shape quadrature operator matrix:
+    #  axis     0               1               2
+    #           theta           npoints         seeds
 
 
 
-    ### Plot scatter at two different times the shape of the squeezing
-    # timearray= np.linspace(40,200,30)
-    # at time 0:
-    # plt.scatter(np.real(S_x[0,:,0]),np.real(Q_yz[0,:,0]))
-    # plt.show()
-    #
-    # # at time 22 micro sec:
-    # t_index = time_in_micro_s_to_index(22, time)
-    # plt.scatter(np.real(S_x[t_index,:,0]),np.real(Q_yz[t_index,:,0]))
-    # plt.show()
+    quadrature_operator_matrix_var_min_theta = np.min(quadrature_operator_matrix_var, axis=0)
+    print(np.shape(quadrature_operator_matrix_var_min_theta))
+
+    # shape quadrature_operator_matrix_var_min_theta:
+    #  axis     0             1
+    #           npoints       seeds
 
 
 
+    #define min_theta wineland parameter including misterious 2
+    wineland_param_min_theta = 4 * N * quadrature_operator_matrix_var_min_theta[0:1000] / comm_S_x_Q_yz_exp_absolute_val[0:1000] ** 2
+
+    # shape wineland_param_min_theta:
+    #  axis     0             1
+    #           npoints       seeds
+
+    ## find the time when wineland parameter gets above 1
+    idx_loose_wineland = np.argwhere(np.diff(np.sign(wineland_param_min_theta[:, 0] - 1)))[-1][0]
+    time_loose_wineland_vec[i] = time[idx_loose_wineland]
 
 
+    ### Plot maximal entanglement over detuning Part A
+
+    #we include the misterious 2round_delta_str = str(round(delta_p[i] / 2 / np.pi / 10 ** 6, 2))
+    wineland_param_min_theta_time = np.min(wineland_param_min_theta, axis=0)
+    squeezing_vec[i] = wineland_param_min_theta_time
+
+
+    ### Plot scatter at four different times shape of the squeezing
+    # timearray= np.array([0,20,70])
     #
     # for t_1 in timearray:
     #     t_index = time_in_micro_s_to_index(t_1,time)
-    #     plt.scatter(np.real(S_x[t_index,:,0]),np.real(Q_yz[t_index,:,0]))
+    #     plt.scatter(np.real(S_x[t_index,:,0])/1000,np.real(Q_yz[t_index,:,0])/1000,s=4)
+    #     # plt.xlabel('$\\langle S_x \\rangle \\, \\,\\, (10^3)$')
+    #     plt.xlabel('$ S_x \\, \\,\\, (10^3)$')
+    #     # plt.ylabel('$\\langle Q_{yz} \\rangle\\, \\, \\,(10^3)$')
+    #     plt.ylabel('$ Q_{yz} \\, \\, \\,(10^3)$')
+    #     # plt.figure(figsize=(5, 4))  # Adjust width and height as needed
+    #     plt.tight_layout()
+    #     plot_name = 'plots/sns_qyz_sx_' + str(t_1) +'_bla.svg'
+    #     plt.savefig(plot_name)
     #     plt.show()
+
+
+    ### Plot wineland parameter over theta Part A
+    # wineland_param = 4 * N * quadrature_operator_matrix_var / comm_S_x_Q_yz_exp_absolute_val**2
+    # t_index_20 = time_in_micro_s_to_index(20,time)
+    # print(np.shape(wineland_param))
+    # plt.plot(theta, wineland_param[:,t_index_20,0])
+    # ax = plt.gca()
+    # plt.ylabel('$\\xi^2(\\theta)$')
+    # plt.xlabel('$\\theta$',labelpad=0)
+    # plt.yscale('log')
+    # plt.hlines(1,0,2*np.pi,linestyles='dashed', label = 'SQL', colors='grey')
+    # ax.xaxis.set_major_formatter(plt.FuncFormatter(multiple_formatter()))
+    # plt.savefig('plots/sns_wineland_theta_bla.svg')
+    # plt.show()
+    #
+
 
 
 
     ###  Plot Wineland parameter over time part A
 
-    #the devided by two is needed, because for mysterious reasons the variance of Sx is initially around 160,000 and not 80,000
-    # plt.plot(time, S_x_var/2/heis_limit_for_one_quadrature_var, label='S_x_var')
-    # plt.plot(time,Q_yz_var/2/heis_limit_for_one_quadrature_var, label='Q_yz_var')
-    # plt.plot(time,quadrature_operator_matrix_var_min/2/heis_limit_for_one_quadrature_var, label='quad_op_min_var') # minimal ariance over different theta
-
-
-    #BUT better to plot Wineland parameter instead (again I add the misterious 2)
-    #note, that N actually also has variance (which is experimental caused)
-
-    if i == 0 or i == N_delta_p_points - 1:
-        round_delta_str = str(round(delta_p[i] / 2 / np.pi / 10 ** 6, 2))
-        plt.plot(time[0:1000]*1000, 4 * N * quadrature_operator_matrix_var_min[0:1000]/comm_S_x_Q_yz_exp_absolute_val[0:1000]**2/2,label='$\\delta_+ / 2 \\pi = $' + round_delta_str + ' MHz')
-
-    # plt.plot(time,Q_xz_var, label='Q_xz_var')
-    # plt.plot(time,S_y_var, label='S_y_var')
-    # plt.plot(time,S_z_var, label='S_z_var')
+    # #the devided by two is needed, because for mysterious reasons the variance of Sx is initially around 160,000 and not 80,000
+    # # plt.plot(time, S_x_var/2/heis_limit_for_one_quadrature_var, label='S_x_var')
+    # # plt.plot(time,Q_yz_var/2/heis_limit_for_one_quadrature_var, label='Q_yz_var')
+    # # plt.plot(time,quadrature_operator_matrix_var_min/2/heis_limit_for_one_quadrature_var, label='quad_op_min_var') # minimal ariance over different theta
+    #
+    #
+    # #BUT better to plot Wineland parameter instead (again I add the misterious 2)
+    # #note, that N actually also has variance (which is experimental caused)
+    #
+    # if i == 0 or i == N_delta_p_points - 1:
+    #     round_delta_str = str(round(delta_p[i] / 2 / np.pi / 10 ** 6, 2))
+    #     plt.plot(time[0:1000]*1000, 4 * N * quadrature_operator_matrix_var_min[0:1000]/comm_S_x_Q_yz_exp_absolute_val[0:1000]**2/2,label='$\\delta_+ / 2 \\pi = $' + round_delta_str + ' MHz')
+    #
+    # # plt.plot(time,Q_xz_var, label='Q_xz_var')
+    # # plt.plot(time,S_y_var, label='S_y_var')
+    # # plt.plot(time,S_z_var, label='S_z_var')
 
 
 ### plot Wineland parameter over time part B
-plt.hlines(1,0,100,linestyles='dashed', colors='grey')
-plt.ylabel('min$_\\theta \\, \\, \\xi^2(\\theta)$')
-plt.xlabel('$t \\, \\, (\\mu s$)')
-plt.yscale('log')
-# plt.hlines(1,0,200,linestyles='dashed', label = 'SQL', colors='grey')
-plt.legend()
-plt.savefig('plots/sns_wineland_time_bla.svg')
-plt.show()
+# plt.hlines(1,0,100,linestyles='dashed', colors='grey')
+# plt.ylabel('min$_\\theta \\, \\, \\xi^2(\\theta)$')
+# plt.xlabel('$t \\, \\, (\\mu s$)')
+# plt.yscale('log')
+# # plt.hlines(1,0,200,linestyles='dashed', label = 'SQL', colors='grey')
+# plt.legend()
+# plt.savefig('plots/sns_wineland_time_bla.svg')
+# plt.show()
+
+
+### plot maximal entanglement over detuning Part B
+# np.savetxt("sns_squeezing_vec_bla.csv", np.real(squeezing_vec), delimiter=",")
+# np.savetxt("sns_detuning_vec_bla.csv", delta_p, delimiter=",")
+# np.savetxt("sns_time_loose_wineland_vec_bla.csv", time_loose_wineland_vec, delimiter=",")
 
 
 
-
-
-
-
-
-# Plot  population ratio
+#### Plot  population ratio
 # for i in range(N_delta_p_points):
 #
 #     rho0_vec = np.abs(newfp[i][0]) ** 2
