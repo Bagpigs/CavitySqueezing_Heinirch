@@ -154,7 +154,14 @@ for i in range(N_delta_p_points):
     xi_N_squared_coh = 4 * rho2_mean / 2 / N
     number_squeezing = xi_N_squared / xi_N_squared_coh
 
-    ### Plot squeezing over time Part A
+
+    ## evaluate number squeezing
+    # if i == 0 or  i == N_delta_p_points -1:
+    #     print(np.min(number_squeezing))
+
+
+
+    ## Plot squeezing over time Part A
     # font = {'size': 15}
     # plt.rc('font', **font)
     # if i == 0 or i == N_delta_p_points - 1:
@@ -165,7 +172,7 @@ for i in range(N_delta_p_points):
 
     squeezing_vec[i] = number_squeezing.min()
     # pairs_max_squeezing_vec[i] = rho4_mean[number_squeezing.argmin()]
-    #
+    #time
     idx_loose_squeezing = np.argwhere(np.diff(np.sign(number_squeezing[:, 0] - 1)))[-1][0]
     pairs_loose_squeezing_vec[i] = rho2_mean[idx_loose_squeezing]
     time_loose_squeezing_vec[i] = time[idx_loose_squeezing]
@@ -259,18 +266,18 @@ for i in range(N_delta_p_points):
 # plt.show()
 
 ### Plot t_loose_squeezing over detuning
-#
-# font = {'size': 16}
-# plt.rc('font', **font)
-#
-# plt.plot(delta_p/2/np.pi/10**6, time_loose_squeezing_vec*1000)
-# plt.ylabel('$t \\, \\, (\\mu s)$')
-# plt.xlabel('$\\delta_+/2\\pi \\,\\,$(MHz)')
-# plt.xlim((delta_p/2/np.pi/10**6)[0],(delta_p/2/np.pi/10**6)[-1])
-# plt.tight_layout()
-# plt.legend()
-# plt.savefig('plots/rns_t_det_sq_loose_bla.svg')
-# plt.show()
+
+font = {'size': 16}
+plt.rc('font', **font)
+
+plt.plot(delta_p/2/np.pi/10**6, time_loose_squeezing_vec*1000)
+plt.ylabel('$t_L \\, \\, (\\mu s)$')
+plt.xlabel('$\\delta_+/2\\pi \\,\\,$(MHz)')
+plt.xlim((delta_p/2/np.pi/10**6)[0],(delta_p/2/np.pi/10**6)[-1])
+plt.tight_layout()
+plt.legend()
+plt.savefig('plots/rns_t_det_sq_loose_bla.svg')
+plt.show()
 
 
 # Plot number pairs

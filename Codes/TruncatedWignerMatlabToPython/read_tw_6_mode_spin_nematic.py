@@ -104,54 +104,12 @@ if __name__ == '__main__':
 ##end HEADER
 
 
-# Plot wineland over theta Part 0
-# def multiple_formatter(denominator=2, number=np.pi, latex='\pi'):
-#     def gcd(a, b):
-#         while b:
-#             a, b = b, a%b
-#         return a
-#     def _multiple_formatter(x, pos):
-#         den = denominator
-#         num = int(np.rint(den*x/number))
-#         com = gcd(num,den)
-#         (num,den) = (int(num/com),int(den/com))
-#         if den==1:
-#             if num==0:
-#                 return r'$0$'
-#             if num==1:
-#                 return r'$%s$'%latex
-#             elif num==-1:
-#                 return r'$-%s$'%latex
-#             else:
-#                 return r'$%s%s$'%(num,latex)
-#         else:
-#             if num==1:
-#                 return r'$\frac{%s}{%s}$'%(latex,den)
-#             elif num==-1:
-#                 return r'$\frac{-%s}{%s}$'%(latex,den)
-#             else:
-#                 return r'$\frac{%s%s}{%s}$'%(num,latex,den)
-#     return _multiple_formatter
-#
-# class Multiple:
-#     def __init__(self, denominator=2, number=np.pi, latex='\pi'):
-#         self.denominator = denominator
-#         self.number = number
-#         self.latex = latex
-#
-#     def locator(self):
-#         return plt.MultipleLocator(self.number / self.denominator)
-#
-#     def formatter(self):
-#         return plt.FuncFormatter(multiple_formatter(self.denominator, self.number, self.latex))
-
-
 # Shape of tw_matrix_variable_detuning (N_delta_p_points,      6,         Npoints,     Nreliz,         length(n_list)
 #                                       detunings               modes       time        realization     seeds
 # axis                                  0                       1           2               3           4
 
 
-font = {'size': 20}
+font = {'size': 14}
 plt.rc('font', **font)
 
 squeezing_vec = np.zeros((N_delta_p_points),dtype=np.csingle)
@@ -160,7 +118,7 @@ newfp = np.memmap(filename, dtype=np.csingle, mode='r', shape=(N_delta_p_points,
 
 
 
-for i in range(1):#N_delta_p_points):
+for i in range(29,30):#N_delta_p_points):
 
     tw_matrix = newfp[i]
 
@@ -296,7 +254,11 @@ for i in range(1):#N_delta_p_points):
     # plt.xlabel('$\\theta$',labelpad=0)
     # plt.yscale('log')
     # plt.hlines(1,0,2*np.pi,linestyles='dashed', label = 'SQL', colors='grey')
-    # ax.xaxis.set_major_formatter(plt.FuncFormatter(multiple_formatter()))
+    # ax.set_xticks(np.array([0,np.pi/3, 2*np.pi/3, np.pi, 4*np.pi/3, 5*np.pi/3, 2*np.pi]))
+    # ax.set_xticklabels([r'$0$', r'$\frac{\pi}{3}$', r'$\frac{2\pi}{3}$', r'$\pi$',
+    #              r'$\frac{4\pi}{3}$', r'$\frac{5\pi}{3}$', r'$2\pi$'])
+    # plt.tight_layout()
+    #
     # plt.savefig('plots/sns_wineland_theta_bla.svg')
     # plt.show()
     #
