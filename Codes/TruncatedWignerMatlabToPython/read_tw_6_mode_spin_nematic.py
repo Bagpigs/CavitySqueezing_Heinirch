@@ -227,6 +227,23 @@ for i in range(29,30):#N_delta_p_points):
     squeezing_vec[i] = wineland_param_min_theta_time
 
 
+
+    ### Plot Sx Sy at different times
+
+    timearray = np.array([0, 100, 180])
+
+    for t_1 in timearray:
+        t_index = time_in_micro_s_to_index(t_1,time)
+        plt.scatter(np.real(S_x[t_index,:,0])/1000,np.real(S_y[t_index,:,0])/1000,s=4)
+        # plt.xlabel('$\\langle S_x \\rangle \\, \\,\\, (10^3)$')
+        plt.xlabel('$ S_x \\, \\,\\, (10^3)$')
+        # plt.ylabel('$\\langle Q_{yz} \\rangle\\, \\, \\,(10^3)$')
+        plt.ylabel('$ S_{y} \\, \\, \\,(10^3)$')
+        # plt.figure(figsize=(5, 4))  # Adjust width and height as needed
+        plt.tight_layout()
+        plt.show()
+        # plt.savefig(plot_name)
+
     ### Plot scatter at four different times shape of the squeezing
     # timearray= np.array([0,20,70])
     #

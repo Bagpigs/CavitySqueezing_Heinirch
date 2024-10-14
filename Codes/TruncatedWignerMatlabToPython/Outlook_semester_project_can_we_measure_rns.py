@@ -105,7 +105,12 @@ pairs_max_squeezing_vec = np.zeros((N_delta_p_points))
 pairs_loose_squeezing_vec = np.zeros((N_delta_p_points))
 time_loose_squeezing_vec = np.zeros((N_delta_p_points))
 
-for i in range(N_delta_p_points):
+for i in range(29,N_delta_p_points):
+
+    # Shape of newfp:   ( 6,         Npoints,    Nreliz,         length(n_list)
+    #                     modes       time        realization     seeds
+    # axis                0           1           2               3
+
 
     rho0_vec = np.abs(newfp[i][0]) ** 2
     rho1_vec = np.abs(newfp[i][1]) ** 2
@@ -113,6 +118,19 @@ for i in range(N_delta_p_points):
     rho3_vec = np.abs(newfp[i][3]) ** 2
     rho4_vec = np.abs(newfp[i][4]) ** 2
     rho5_vec = np.abs(newfp[i][5]) ** 2
+
+    # Shape of rho0_vec:   (Npoints,    Nreliz,         length(n_list)
+    #                       time        realization     seeds
+    # axis                  0           1                2
+
+    #ADD detection noise
+    detection_noise_variance = 30
+    mean_gauss = 0
+    for npoint in range(Npoints):
+        for nrealiz in range(Nrealiz):
+            rho1_vec[npoint][nrealiz][0] += np.random.normal(loc=mean_gauss, scale=np.sqrt(detection_noise_variance), size=1)[0]
+            rho2_vec[npoint][nrealiz][0] += np.random.normal(loc=mean_gauss, scale=np.sqrt(detection_noise_variance), size=1)[0]
+
 
     rho0_mean = np.mean(rho0_vec, axis=1)
     rho1_mean = np.mean(rho1_vec, axis=1)
@@ -165,12 +183,12 @@ for i in range(N_delta_p_points):
 
 
     ## Plot squeezing over time Part A
-    # font = {'size': 15}
-    # plt.rc('font', **font)
-    # if i == 0 or i == N_delta_p_points - 1:
-    #     round_delta_str = str(round(delta_p[i] / 2 / np.pi / 10 ** 6, 2))
-    #     plt.plot(time * 1000, number_squeezing, label='$\\delta_+ / 2 \\pi = $' + round_delta_str + ' MHz')
-    #
+    font = {'size': 15}
+    plt.rc('font', **font)
+    if i == 0 or i == N_delta_p_points - 1:
+        round_delta_str = str(round(delta_p[i] / 2 / np.pi / 10 ** 6, 2))
+        plt.plot(time * 1000, number_squeezing, label='$\\delta_+ / 2 \\pi = $' + round_delta_str + ' MHz')
+
 
 
     squeezing_vec[i] = number_squeezing.min()
@@ -269,18 +287,18 @@ for i in range(N_delta_p_points):
 # plt.show()
 
 ### Plot t_loose_squeezing over detuning
-
-font = {'size': 16}
-plt.rc('font', **font)
-
-plt.plot(delta_p/2/np.pi/10**6, time_loose_squeezing_vec*1000)
-plt.ylabel('$t_L \\, \\, (\\mu s)$')
-plt.xlabel('$\\delta_+/2\\pi \\,\\,$(MHz)')
-plt.xlim((delta_p/2/np.pi/10**6)[0],(delta_p/2/np.pi/10**6)[-1])
-plt.tight_layout()
-plt.legend()
-plt.savefig('plots/rns_t_det_sq_loose_bla.svg')
-plt.show()
+#
+# font = {'size': 16}
+# plt.rc('font', **font)
+#
+# plt.plot(delta_p/2/np.pi/10**6, time_loose_squeezing_vec*1000)
+# plt.ylabel('$t_L \\, \\, (\\mu s)$')
+# plt.xlabel('$\\delta_+/2\\pi \\,\\,$(MHz)')
+# plt.xlim((delta_p/2/np.pi/10**6)[0],(delta_p/2/np.pi/10**6)[-1])
+# plt.tight_layout()
+# plt.legend()
+# plt.savefig('plots/rns_t_det_sq_loose_bla.svg')
+# plt.show()
 
 
 # Plot number pairs
@@ -353,12 +371,13 @@ plt.show()
 
 
 ### plot squeezing over time Part B
-# plt.ylabel('$\\xi_N^2 / \\xi_{N,coh}^2$')
-# plt.xlabel('$t \\, \\, (\\mu s$)')
-# plt.yscale('log')
-# plt.hlines(1, 0, 200, linestyles='dashed', label='SQL', colors='grey')
-# plt.tight_layout()
-#
-# plt.legend()
-# plt.savefig('plots/rns_sq_time_bla.svg')
-# plt.show()
+plt.ylabel('$\\xi_N^2 / \\xi_{N,coh}^2$')
+plt.xlabel('$t \\, \\, (\\mu s$)')
+plt.yscale('log')
+plt.title('mean of gauss ='+str(mean_gauss) + ' det_var=' + str(detection_noise_variance))
+plt.hlines(1, 0, 200, linestyles='dashed', label='SQL', colors='grey')
+plt.tight_layout()
+
+plt.legend()
+plt.savefig('plots/rns_sq_time_bla.svg')
+plt.show()
