@@ -3,7 +3,7 @@ import numpy as np
 
 
 N_temp = 80000
-Nrealiz = 10000
+Nrealiz = 50000
 
 phi0_vec = np.zeros(
         Nrealiz,
@@ -28,7 +28,13 @@ for realiz_index in range(0, Nrealiz):
     
     phi_initial = np.zeros(6, dtype=np.csingle)
     phi_initial[0] = np.sqrt(N_temp)  # All atoms in mF = 0
-    
+    # phi_initial[1] = np.sqrt(0.5)
+    # phi_initial[2] = np.sqrt(0.5)
+    # phi_initial[3] = np.sqrt(0.5)
+    # phi_initial[4] = np.sqrt(0.5)
+    # phi_initial[5] = np.sqrt(0.5)
+
+    #
     # Sample Quantum 1/2 noise # like it is written here, the variance for each quantity is 1 (0.5 real part variance + 0.5 imag part variance)
     # correct would be to replace np.sqrt(0.5) by 0.5 everywhere in the lines below
     phi_initial[0] = phi_initial[0] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
@@ -43,6 +49,26 @@ for realiz_index in range(0, Nrealiz):
                      np.random.normal(loc=0, scale=1, size=1)[0]
     phi_initial[5] = phi_initial[5] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
                      np.random.normal(loc=0, scale=1, size=1)[0]
+
+    #
+    # phi_initial[0] = phi_initial[0] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
+    #                  np.random.normal(loc=0, scale=1, size=1)[0]
+    # # phi_initial[1] = phi_initial[1] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
+    # #                  np.random.normal(loc=0, scale=1, size=1)[0]
+    # phi_initial[1] =  phi_initial[1] + np.sqrt(0.5) * \
+    #                   (np.random.normal(loc=0, scale=np.sqrt(0.5), size=1)[0] + 1j* np.random.normal(loc=0, scale=np.sqrt(0.5), size=1)[0])
+    #
+    # phi_initial[2] = phi_initial[2] +  np.sqrt(0.5) * \
+    #                  (np.random.normal(loc=0, scale=np.sqrt(0.5), size=1)[0] + 1j *
+    #                   np.random.normal(loc=0, scale=np.sqrt(0.5), size=1)[0])
+    # phi_initial[3] = phi_initial[3] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
+    #                  np.random.normal(loc=0, scale=1, size=1)[0]
+    # phi_initial[4] = phi_initial[4] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
+    #                  np.random.normal(loc=0, scale=1, size=1)[0]
+    # phi_initial[5] = phi_initial[5] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
+    #                  np.random.normal(loc=0, scale=1, size=1)[0]
+
+
 
     phi0_vec[realiz_index] = phi_initial[0]
     phi1_vec[realiz_index] = phi_initial[1]
@@ -77,13 +103,17 @@ x = np.mean(rho2_vec) #HÄÄÄÄ? = 0.05????
 J_z_vec = 1 / 2 * (rho1_vec - rho2_vec)
 J_z_var = (np.var(J_z_vec))
 
+#y = np.var(rho1_vec) = 0.95
+#1 - 1/4  -> physikalisch 3/4
+#z = np.var(phi1_vec) = 1 ->physikalisch 1
+
 # the (-k,-1) occupation i.e. rho2_mean is used to define the number of pairs in the chi_+ channel
 exp_pair_number = rho2_mean
 J_z_var_coh = exp_pair_number / 2
 
 xi_N_squared = 4 * J_z_var / N_temp
 xi_N_squared_coh = 4 * J_z_var_coh / N_temp
-number_squeezing = 2* xi_N_squared / xi_N_squared_coh
+number_squeezing = xi_N_squared / xi_N_squared_coh
 
 print('hi')
 #

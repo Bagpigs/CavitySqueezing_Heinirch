@@ -2,7 +2,6 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-
 ###   DEFINE INITIAL PARAMETERS ###
 ### Make sure they are the same as in "create_data_tw.py"!!! ###
 
@@ -12,9 +11,9 @@ Npoints = 2000  # time points
 time = np.linspace(tbounds[0], tbounds[1], Npoints) # time array
 
 n_list = np.array([0])  # List of average initial pair number from classical seeds
-Nrealiz = 800 # realizations of TW simulation
+Nrealiz = 1000 # realizations of TW simulation
 
-filename = 'tw_2000_npoints_800_nrealiz_max_laser_power.bin'
+filename = 'tw_2000_npoints_1000_nrealiz_max_laser_power_non_seeded.bin'
 
 
 
@@ -27,7 +26,6 @@ tw_matrix = np.array(np.memmap(filename, dtype=np.csingle, mode='r', shape=(6, N
 # Shape of tw_matrix: ( 6,         Npoints,    Nreliz,         length(n_list)
 #                     modes       time        realization     seeds
 # axis                0           1           2               3
-
 
 
 
@@ -51,10 +49,10 @@ rho5_mean = np.mean(rho5_vec, axis=1)
 
 
 J_z_vec = 1 / 2 * (rho1_vec - rho2_vec)
-J_z_var = (np.var(J_z_vec, axis=1))
+J_z_var = (np.var(J_z_vec, axis=1)) - 1/8
 
 # the (-k,-1) occupation i.e. rho2_mean is used to define the number of pairs in the chi_+ channel
-exp_pair_number = rho2_mean
+exp_pair_number = rho2_mean - 1/2
 J_z_var_coh = exp_pair_number / 2
 
 xi_N_squared = 4 * J_z_var / N
@@ -81,13 +79,13 @@ plt.show()
 
 
 
-### SPIN-NEMATIC SQUEEZING ###
+## SPIN-NEMATIC SQUEEZING ###
 
 phi0_vec = tw_matrix[0]
 phi1_vec = tw_matrix[1]
 phi2_vec = tw_matrix[2]
 
-S_x = 1 / 2 ** 0.5 * (np.conj(phi1_vec) * phi0_vec + np.conj(phi0_vec) * phi2_vec + \
+S_x_W = 1 / 2 ** 0.5 * (np.conj(phi1_vec) * phi0_vec + np.conj(phi0_vec) * phi2_vec + \
                       np.conj(phi0_vec) * phi1_vec + np.conj(phi2_vec) * phi0_vec)
 
 # Shape of S_x´: (      Npoints,        Nrealiz,            length(n_list)
@@ -97,39 +95,76 @@ S_y = 1 / (2**0.5 * 1j) * ( np.conj(phi1_vec) * phi0_vec - np.conj(phi0_vec) * p
 
 S_z = np.conj(phi1_vec) * phi1_vec - np.conj(phi2_vec) * phi2_vec
 
-Q_yz = 1 / 2 ** 0.5 * (-1j * np.conj(phi1_vec) * phi0_vec + 1j * np.conj(phi0_vec) * phi2_vec + \
+Q_yz_W = 1 / 2 ** 0.5 * (-1j * np.conj(phi1_vec) * phi0_vec + 1j * np.conj(phi0_vec) * phi2_vec + \
                        1j * np.conj(phi0_vec) * phi1_vec - 1j * np.conj(phi2_vec) * phi0_vec)
 
-comm_S_x_Q_yz = 1j * (np.conj(phi1_vec) * phi1_vec + np.conj(phi1_vec) * phi2_vec - 2 * np.conj(phi0_vec) * phi0_vec + np.conj(phi2_vec) * phi1_vec + np.conj(phi2_vec) * phi2_vec)
 
 
-comm_S_x_Q_yz_exp_absolute_val = np.abs(np.mean(comm_S_x_Q_yz, axis=1))
+comm_S_x_Q_yz_W = 1j * (np.conj(phi1_vec) * phi1_vec + np.conj(phi1_vec) * phi2_vec - 2 * np.conj(phi0_vec) * phi0_vec + np.conj(phi2_vec) * phi1_vec + np.conj(phi2_vec) * phi2_vec)
+
+
+
+
+# generalized quadrature square weyl symbol
+gen_quad_square_W = 1 / 2 * (np.conj(phi1_vec)* (phi1_vec + phi2_vec) + np.conj(phi2_vec) * (phi1_vec + phi2_vec) + 2 * np.conj(phi0_vec) * phi0_vec) - 1
+
+# Shape of gen_quad_square´:
+# axis      0               1                   2
+#           Npoints,        Nrealiz,            length(n_list)
+
+
+comm_S_x_Q_yz_exp_absolute_val = np.abs(np.mean(comm_S_x_Q_yz_W, axis=1))
 
 # shape comm_S_x_Q_yz_exp_absolute_val:
 #  axis     0               1
 #           npoints         seeds
 
-heis_limit_for_one_quadrature_var = comm_S_x_Q_yz_exp_absolute_val / 2
-
-Q_yz_var = np.var(Q_yz, axis=1)
 
 theta = np.linspace(0, 2 * np.pi, 300)
 
-quadrature_operator_matrix = np.array([np.cos(theta[i]) * S_x + np.sin(theta[i]) * Q_yz for i in range(len(theta))])
 
-# shape quadrature operator matrix:
+#generalized quadrature weyl symbol
+gen_quad_W_theta = np.array([np.cos(theta[i]) * S_x_W + np.sin(theta[i]) * Q_yz_W for i in range(len(theta))])
+
+# shape gen quad matrix:
 #  axis     0               1               2               3
 #           theta           npoints         nrealiz         seeds
 
-quadrature_operator_matrix_var = np.var(quadrature_operator_matrix, axis=2)
 
-quadrature_operator_matrix_var_min_theta = np.min(quadrature_operator_matrix_var, axis=0)
+# make the generalized quadrature squared weyl symbol fit to generalized quadrature weyl symbol by adding the theta axis
+gen_quad_square_W_theta = np.array([gen_quad_square_W for i in range(len(theta))])
+
+
+# UNCLEAR SITUATION
+# this here is the first point where we calculate a variance and therefore we just add the factor 2 here.
+# in any further calcuations this problem should be solved.
+gen_quad_var_theta = np.mean(gen_quad_square_W_theta, axis=2) #- np.mean(gen_quad_W_theta, axis=2)**2
+gen_quad_var_theta = np.var(gen_quad_W_theta, axis=2) #- np.mean(gen_quad_W_theta, axis=2)**2
+
+gen_quad_var_min_theta = np.min(gen_quad_var_theta, axis=0)
+
+### testing around ###
+# # plt.plot(time, np.max(np.mean(gen_quad_W_theta, axis=2)**2,axis=0),label='gen_quad')
+# plt.plot(time,np.mean(gen_quad_square_W,axis=1),label='gen_quad_square')
+# plt.plot(time, np.mean(S_x_W, axis=1)**2,label='S_x_W_sq')
+# plt.plot(time, np.mean(Q_yz_W, axis=1)**2,label='Q_yz_W_sq')
+# plt.plot(time, (np.mean(gen_quad_W_theta, axis=2))[100],label='test')
+#
+#
+# gen_quad_var_min_theta = np.mean(gen_quad_square_W, axis=1) - np.max(np.mean(gen_quad_W_theta, axis=2)**2,axis=0)
+# plt.legend()
+# # plt.plot(time,gen_quad_var_min_theta)
+#
+# plt.show()
+
+
+
 
 # shape quadrature_operator_matrix_var_min_theta:
 #  axis     0             1
 #           npoints       seeds
 
-wineland_param_min_theta = 4 * N * quadrature_operator_matrix_var_min_theta[0:1000] / comm_S_x_Q_yz_exp_absolute_val[0:1000] ** 2
+wineland_param_min_theta = 4 * N * gen_quad_var_min_theta / comm_S_x_Q_yz_exp_absolute_val** 2
 
 # shape wineland_param_min_theta:
 #  axis     0             1
@@ -138,7 +173,7 @@ wineland_param_min_theta = 4 * N * quadrature_operator_matrix_var_min_theta[0:10
 
 ###  Plot Wineland parameter over time part A
 
-plt.plot(time[0:1000]*1000, 4 * N * quadrature_operator_matrix_var_min_theta[0:1000]/comm_S_x_Q_yz_exp_absolute_val[0:1000]**2/2,label='$\\delta_+ / 2 \\pi = $ ? MHz')
+plt.plot(time*1000, wineland_param_min_theta,label='$\\delta_+ / 2 \\pi = $ ? MHz')
 plt.hlines(1,0,100,linestyles='dashed', colors='grey', label='SQL')
 plt.ylabel('min$_\\theta \\, \\, \\xi^2(\\theta)$')
 plt.xlabel('$t \\, \\, (\\mu s$)')

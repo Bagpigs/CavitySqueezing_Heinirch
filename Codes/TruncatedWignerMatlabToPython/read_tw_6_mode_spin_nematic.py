@@ -190,7 +190,7 @@ for i in range(29,30):#N_delta_p_points):
     # ASSUME that the VAR-FACTOR-2-PROBLEM is due to our initialization of the truncated wigner:
     # this here is the first point where we calculate a variance and therefor we just add the factor 2 here.
     # in any further calcuations this problem should be solved.
-    quadrature_operator_matrix_var = np.var(quadrature_operator_matrix, axis=2) / 2
+    quadrature_operator_matrix_var = np.var(quadrature_operator_matrix, axis=2) /2
     print(np.shape(quadrature_operator_matrix_var))
 
     #shape quadrature operator matrix:
@@ -229,22 +229,22 @@ for i in range(29,30):#N_delta_p_points):
 
 
     ### Plot Sx Sy at different times
-
-    timearray = np.array([0, 100, 180])
-
-    for t_1 in timearray:
-        t_index = time_in_micro_s_to_index(t_1,time)
-        plt.scatter(np.real(S_x[t_index,:,0])/1000,np.real(S_y[t_index,:,0])/1000,s=4)
-        # plt.xlabel('$\\langle S_x \\rangle \\, \\,\\, (10^3)$')
-        plt.xlabel('$ S_x \\, \\,\\, (10^3)$')
-        # plt.ylabel('$\\langle Q_{yz} \\rangle\\, \\, \\,(10^3)$')
-        plt.ylabel('$ S_{y} \\, \\, \\,(10^3)$')
-        # plt.figure(figsize=(5, 4))  # Adjust width and height as needed
-        plt.tight_layout()
-        plt.show()
-        # plt.savefig(plot_name)
-
-    ### Plot scatter at four different times shape of the squeezing
+    #
+    # timearray = np.array([0, 100, 180])
+    #
+    # for t_1 in timearray:
+    #     t_index = time_in_micro_s_to_index(t_1,time)
+    #     plt.scatter(np.real(S_x[t_index,:,0])/1000,np.real(S_y[t_index,:,0])/1000,s=4)
+    #     # plt.xlabel('$\\langle S_x \\rangle \\, \\,\\, (10^3)$')
+    #     plt.xlabel('$ S_x \\, \\,\\, (10^3)$')
+    #     # plt.ylabel('$\\langle Q_{yz} \\rangle\\, \\, \\,(10^3)$')
+    #     plt.ylabel('$ S_{y} \\, \\, \\,(10^3)$')
+    #     # plt.figure(figsize=(5, 4))  # Adjust width and height as needed
+    #     plt.tight_layout()
+    #     plt.show()
+    #     # plt.savefig(plot_name)
+    #
+    # ### Plot scatter at four different times shape of the squeezing
     # timearray= np.array([0,20,70])
     #
     # for t_1 in timearray:
@@ -285,33 +285,33 @@ for i in range(29,30):#N_delta_p_points):
 
     ###  Plot Wineland parameter over time part A
 
-    # #the devided by two is needed, because for mysterious reasons the variance of Sx is initially around 160,000 and not 80,000
-    # # plt.plot(time, S_x_var/2/heis_limit_for_one_quadrature_var, label='S_x_var')
-    # # plt.plot(time,Q_yz_var/2/heis_limit_for_one_quadrature_var, label='Q_yz_var')
-    # # plt.plot(time,quadrature_operator_matrix_var_min/2/heis_limit_for_one_quadrature_var, label='quad_op_min_var') # minimal ariance over different theta
-    #
-    #
-    # #BUT better to plot Wineland parameter instead (again I add the misterious 2)
-    # #note, that N actually also has variance (which is experimental caused)
-    #
-    # if i == 0 or i == N_delta_p_points - 1:
-    #     round_delta_str = str(round(delta_p[i] / 2 / np.pi / 10 ** 6, 2))
-    #     plt.plot(time[0:1000]*1000, 4 * N * quadrature_operator_matrix_var_min[0:1000]/comm_S_x_Q_yz_exp_absolute_val[0:1000]**2/2,label='$\\delta_+ / 2 \\pi = $' + round_delta_str + ' MHz')
-    #
-    # # plt.plot(time,Q_xz_var, label='Q_xz_var')
-    # # plt.plot(time,S_y_var, label='S_y_var')
-    # # plt.plot(time,S_z_var, label='S_z_var')
+    #the devided by two is needed, because for mysterious reasons the variance of Sx is initially around 160,000 and not 80,000
+    # plt.plot(time, S_x_var/2/heis_limit_for_one_quadrature_var, label='S_x_var')
+    # plt.plot(time,Q_yz_var/2/heis_limit_for_one_quadrature_var, label='Q_yz_var')
+    # plt.plot(time,quadrature_operator_matrix_var_min/2/heis_limit_for_one_quadrature_var, label='quad_op_min_var') # minimal ariance over different theta
 
 
-### plot Wineland parameter over time part B
-# plt.hlines(1,0,100,linestyles='dashed', colors='grey')
-# plt.ylabel('min$_\\theta \\, \\, \\xi^2(\\theta)$')
-# plt.xlabel('$t \\, \\, (\\mu s$)')
-# plt.yscale('log')
-# # plt.hlines(1,0,200,linestyles='dashed', label = 'SQL', colors='grey')
-# plt.legend()
-# plt.savefig('plots/sns_wineland_time_bla.svg')
-# plt.show()
+    #BUT better to plot Wineland parameter instead (again I add the misterious 2)
+    #note, that N actually also has variance (which is experimental caused)
+
+    if i == 0 or i == N_delta_p_points - 1:
+        round_delta_str = str(round(delta_p[i] / 2 / np.pi / 10 ** 6, 2))
+        plt.plot(time[0:1000]*1000, 4 * N * quadrature_operator_matrix_var_min_theta[0:1000]/comm_S_x_Q_yz_exp_absolute_val[0:1000]**2,label='$\\delta_+ / 2 \\pi = $' + round_delta_str + ' MHz')
+
+    # plt.plot(time,Q_xz_var, label='Q_xz_var')
+    # plt.plot(time,S_y_var, label='S_y_var')
+    # plt.plot(time,S_z_var, label='S_z_var')
+
+
+## plot Wineland parameter over time part B
+plt.hlines(1,0,100,linestyles='dashed', colors='grey')
+plt.ylabel('min$_\\theta \\, \\, \\xi^2(\\theta)$')
+plt.xlabel('$t \\, \\, (\\mu s$)')
+plt.yscale('log')
+# plt.hlines(1,0,200,linestyles='dashed', label = 'SQL', colors='grey')
+plt.legend()
+plt.savefig('plots/sns_wineland_time_bla.svg')
+plt.show()
 
 
 ### plot maximal entanglement over detuning Part B

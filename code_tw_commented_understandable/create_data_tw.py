@@ -73,12 +73,12 @@ def tw_for_Npoints_Nrealiz_n_seeds(initial_values_dic):
 
             phi_initial = np.zeros(6, dtype=np.csingle)
             phi_initial[0] = np.sqrt(N_temp)  # All atoms in mF = 0
-            phi_initial[1] = np.sqrt(N_temp_therm)  # Atoms in mF = 1, +k
-            phi_initial[2] = np.sqrt(N_temp_therm2)  # Atoms in mF = -1 ,- k
-
-            phi_initial[3] = np.sqrt(N_temp_therm)  # Atoms in mF = -1, +k
-            phi_initial[4] = np.sqrt(N_temp_therm2)  # Atoms in mF = 1, -k
-            phi_initial[5] = 0 # Atoms in  mF = 0, +-2k_x
+            # phi_initial[1] = np.sqrt(0.5) #np.sqrt(N_temp_therm)  # Atoms in mF = 1, +k
+            # phi_initial[2] = np.sqrt(0.5)  # np.sqrt(N_temp_therm2)  # Atoms in mF = -1 ,- k
+            #
+            # phi_initial[3] = np.sqrt(0.5) # np.sqrt(N_temp_therm)  # Atoms in mF = -1, +k
+            # phi_initial[4] = np.sqrt(0.5) # np.sqrt(N_temp_therm2)  # Atoms in mF = 1, -k
+            # phi_initial[5] = np.sqrt(0.5) # 0 # Atoms in mF = 0, +-2k_x
 
             # Sample Quantum 1/2 noise
             phi_initial[0] = phi_initial[0] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
@@ -177,11 +177,11 @@ if __name__ == '__main__':
     # The script "read_data_tw.py" is used to analyse the results.
 
     # We make up a name for the bin file
-    filename = 'tw_2000_npoints_800_nrealiz_max_laser_power.bin'
+    filename = 'tw_2000_npoints_1000_nrealiz_max_laser_power_non_seeded.bin'
 
 
     n_list = np.array([0])  # List of average initial pair number from classical seeds
-    Nrealiz = 800  # Number of TW simulation realizations
+    Nrealiz = 1000  # Number of TW simulation realizations
 
     scalecoupling_k2 = 1  # Scale Coupling to m=0, k_x=+-2k mode, set to 0 to supress coupling to this mode and 1 to consider it correctily
 
