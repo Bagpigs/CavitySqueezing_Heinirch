@@ -48,17 +48,19 @@ rho4_mean = np.mean(rho4_vec, axis=1)
 rho5_mean = np.mean(rho5_vec, axis=1)
 
 
-J_z_vec = 1 / 2 * (rho1_vec - rho2_vec)
-J_z_var = (np.var(J_z_vec, axis=1)) - 1/8
+J_z_vec_W = 1 / 2 * (rho1_vec - rho2_vec)
+J_z_var = (np.var(J_z_vec_W, axis=1)) - 1/8
 
 # the (-k,-1) occupation i.e. rho2_mean is used to define the number of pairs in the chi_+ channel
-exp_pair_number = rho2_mean - 1/2
-J_z_var_coh = exp_pair_number / 2
+exp_pair_number_W = rho2_mean - 1/2
+J_z_var_coh = exp_pair_number_W / 2
 
 xi_N_squared = 4 * J_z_var / N
 xi_N_squared_coh = 4 * J_z_var_coh / N
 number_squeezing = xi_N_squared / xi_N_squared_coh
 
+
+print((-10 * np.log10(np.min(number_squeezing))))
 
 ### Plot relative number squeezing over time
 
@@ -90,10 +92,10 @@ S_x_W = 1 / 2 ** 0.5 * (np.conj(phi1_vec) * phi0_vec + np.conj(phi0_vec) * phi2_
 
 # Shape of S_x´: (      Npoints,        Nrealiz,            length(n_list)
 
-S_y = 1 / (2**0.5 * 1j) * ( np.conj(phi1_vec) * phi0_vec - np.conj(phi0_vec) * phi1_vec + \
+S_y_W = 1 / (2**0.5 * 1j) * ( np.conj(phi1_vec) * phi0_vec - np.conj(phi0_vec) * phi1_vec + \
                                 np.conj(phi0_vec) * phi2_vec - np.conj(phi2_vec) * phi0_vec )
 
-S_z = np.conj(phi1_vec) * phi1_vec - np.conj(phi2_vec) * phi2_vec
+S_z_W = np.conj(phi1_vec) * phi1_vec - np.conj(phi2_vec) * phi2_vec
 
 Q_yz_W = 1 / 2 ** 0.5 * (-1j * np.conj(phi1_vec) * phi0_vec + 1j * np.conj(phi0_vec) * phi2_vec + \
                        1j * np.conj(phi0_vec) * phi1_vec - 1j * np.conj(phi2_vec) * phi0_vec)
@@ -106,7 +108,7 @@ comm_S_x_Q_yz_W = 1j * (np.conj(phi1_vec) * phi1_vec + np.conj(phi1_vec) * phi2_
 
 
 # generalized quadrature square weyl symbol
-gen_quad_square_W = 1 / 2 * (np.conj(phi1_vec)* (phi1_vec + phi2_vec) + np.conj(phi2_vec) * (phi1_vec + phi2_vec) + 2 * np.conj(phi0_vec) * phi0_vec) - 1
+# gen_quad_square_W = 1 / 2 * (np.conj(phi1_vec)* (phi1_vec + phi2_vec) + np.conj(phi2_vec) * (phi1_vec + phi2_vec) + 2 * np.conj(phi0_vec) * phi0_vec) - 1
 
 # Shape of gen_quad_square´:
 # axis      0               1                   2
@@ -132,35 +134,19 @@ gen_quad_W_theta = np.array([np.cos(theta[i]) * S_x_W + np.sin(theta[i]) * Q_yz_
 
 
 # make the generalized quadrature squared weyl symbol fit to generalized quadrature weyl symbol by adding the theta axis
-gen_quad_square_W_theta = np.array([gen_quad_square_W for i in range(len(theta))])
+# gen_quad_square_W_theta = np.array([gen_quad_square_W for i in range(len(theta))])
 
 
 # UNCLEAR SITUATION
 # this here is the first point where we calculate a variance and therefore we just add the factor 2 here.
 # in any further calcuations this problem should be solved.
-gen_quad_var_theta = np.mean(gen_quad_square_W_theta, axis=2) #- np.mean(gen_quad_W_theta, axis=2)**2
-gen_quad_var_theta = np.var(gen_quad_W_theta, axis=2) #- np.mean(gen_quad_W_theta, axis=2)**2
+# gen_quad_var_theta = np.mean(gen_quad_square_W_theta, axis=2) - np.mean(gen_quad_W_theta, axis=2)**2
+
+gen_quad_var_theta = np.var(gen_quad_W_theta, axis=2)
 
 gen_quad_var_min_theta = np.min(gen_quad_var_theta, axis=0)
 
-### testing around ###
-# # plt.plot(time, np.max(np.mean(gen_quad_W_theta, axis=2)**2,axis=0),label='gen_quad')
-# plt.plot(time,np.mean(gen_quad_square_W,axis=1),label='gen_quad_square')
-# plt.plot(time, np.mean(S_x_W, axis=1)**2,label='S_x_W_sq')
-# plt.plot(time, np.mean(Q_yz_W, axis=1)**2,label='Q_yz_W_sq')
-# plt.plot(time, (np.mean(gen_quad_W_theta, axis=2))[100],label='test')
-#
-#
-# gen_quad_var_min_theta = np.mean(gen_quad_square_W, axis=1) - np.max(np.mean(gen_quad_W_theta, axis=2)**2,axis=0)
-# plt.legend()
-# # plt.plot(time,gen_quad_var_min_theta)
-#
-# plt.show()
-
-
-
-
-# shape quadrature_operator_matrix_var_min_theta:
+# shape gen_quad_var_min_theta:
 #  axis     0             1
 #           npoints       seeds
 

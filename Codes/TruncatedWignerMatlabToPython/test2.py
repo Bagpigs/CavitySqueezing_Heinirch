@@ -37,36 +37,39 @@ for realiz_index in range(0, Nrealiz):
     #
     # Sample Quantum 1/2 noise # like it is written here, the variance for each quantity is 1 (0.5 real part variance + 0.5 imag part variance)
     # correct would be to replace np.sqrt(0.5) by 0.5 everywhere in the lines below
-    phi_initial[0] = phi_initial[0] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
+    # phi_initial[0] = phi_initial[0] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
+    #                  np.random.normal(loc=0, scale=1, size=1)[0]
+    # phi_initial[1] = phi_initial[1] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
+    #                  np.random.normal(loc=0, scale=1, size=1)[0]
+    # phi_initial[2] = phi_initial[2] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
+    #                  np.random.normal(loc=0, scale=1, size=1)[0]
+    # phi_initial[3] = phi_initial[3] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
+    #                  np.random.normal(loc=0, scale=1, size=1)[0]
+    # phi_initial[4] = phi_initial[4] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
+    #                  np.random.normal(loc=0, scale=1, size=1)[0]
+    # phi_initial[5] = phi_initial[5] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
+    #                  np.random.normal(loc=0, scale=1, size=1)[0]
+    #
+    #
+    phi_initial[0] = phi_initial[0] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
                      np.random.normal(loc=0, scale=1, size=1)[0]
-    phi_initial[1] = phi_initial[1] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
-                     np.random.normal(loc=0, scale=1, size=1)[0]
-    phi_initial[2] = phi_initial[2] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
-                     np.random.normal(loc=0, scale=1, size=1)[0]
-    phi_initial[3] = phi_initial[3] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
-                     np.random.normal(loc=0, scale=1, size=1)[0]
-    phi_initial[4] = phi_initial[4] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
-                     np.random.normal(loc=0, scale=1, size=1)[0]
-    phi_initial[5] = phi_initial[5] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \
+    phi_initial[1] = phi_initial[1] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
                      np.random.normal(loc=0, scale=1, size=1)[0]
 
-    #
-    # phi_initial[0] = phi_initial[0] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
-    #                  np.random.normal(loc=0, scale=1, size=1)[0]
-    # # phi_initial[1] = phi_initial[1] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
-    # #                  np.random.normal(loc=0, scale=1, size=1)[0]
+    phi_initial[2] = phi_initial[2] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
+                     np.random.normal(loc=0, scale=1, size=1)[0]
     # phi_initial[1] =  phi_initial[1] + np.sqrt(0.5) * \
     #                   (np.random.normal(loc=0, scale=np.sqrt(0.5), size=1)[0] + 1j* np.random.normal(loc=0, scale=np.sqrt(0.5), size=1)[0])
     #
     # phi_initial[2] = phi_initial[2] +  np.sqrt(0.5) * \
     #                  (np.random.normal(loc=0, scale=np.sqrt(0.5), size=1)[0] + 1j *
     #                   np.random.normal(loc=0, scale=np.sqrt(0.5), size=1)[0])
-    # phi_initial[3] = phi_initial[3] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
-    #                  np.random.normal(loc=0, scale=1, size=1)[0]
-    # phi_initial[4] = phi_initial[4] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
-    #                  np.random.normal(loc=0, scale=1, size=1)[0]
-    # phi_initial[5] = phi_initial[5] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
-    #                  np.random.normal(loc=0, scale=1, size=1)[0]
+    phi_initial[3] = phi_initial[3] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
+                     np.random.normal(loc=0, scale=1, size=1)[0]
+    phi_initial[4] = phi_initial[4] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
+                     np.random.normal(loc=0, scale=1, size=1)[0]
+    phi_initial[5] = phi_initial[5] + np.sqrt(0.5) * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * np.sqrt(0.5) * \
+                     np.random.normal(loc=0, scale=1, size=1)[0]
 
 
 
