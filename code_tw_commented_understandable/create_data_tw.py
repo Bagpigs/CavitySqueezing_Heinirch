@@ -73,12 +73,12 @@ def tw_for_Npoints_Nrealiz_n_seeds(initial_values_dic):
 
             phi_initial = np.zeros(6, dtype=np.csingle)
             phi_initial[0] = np.sqrt(N_temp)  # All atoms in mF = 0
-            # phi_initial[1] = np.sqrt(0.5) #np.sqrt(N_temp_therm)  # Atoms in mF = 1, +k
-            # phi_initial[2] = np.sqrt(0.5)  # np.sqrt(N_temp_therm2)  # Atoms in mF = -1 ,- k
-            #
-            # phi_initial[3] = np.sqrt(0.5) # np.sqrt(N_temp_therm)  # Atoms in mF = -1, +k
-            # phi_initial[4] = np.sqrt(0.5) # np.sqrt(N_temp_therm2)  # Atoms in mF = 1, -k
-            # phi_initial[5] = np.sqrt(0.5) # 0 # Atoms in mF = 0, +-2k_x
+            phi_initial[1] = np.sqrt(N_temp_therm)  # Atoms in mF = 1, +k
+            phi_initial[2] = np.sqrt(N_temp_therm2)  # Atoms in mF = -1 ,- k
+
+            phi_initial[3] = np.sqrt(N_temp_therm)  # Atoms in mF = -1, +k
+            phi_initial[4] = np.sqrt(N_temp_therm2)  # Atoms in mF = 1, -k
+            phi_initial[5] = 0 # Atoms in mF = 0, +-2k_x
 
             # Sample Quantum 1/2 noise
             phi_initial[0] = phi_initial[0] + 0.5 * np.random.normal(loc=0, scale=1, size=1)[0] + 1j * 0.5 * \

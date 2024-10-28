@@ -60,7 +60,6 @@ xi_N_squared_coh = 4 * J_z_var_coh / N
 number_squeezing = xi_N_squared / xi_N_squared_coh
 
 
-print((-10 * np.log10(np.min(number_squeezing))))
 
 ### Plot relative number squeezing over time
 
